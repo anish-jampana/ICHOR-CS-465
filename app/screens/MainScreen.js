@@ -1,6 +1,5 @@
-import React from 'react';
-import { Text, StyleSheet, SafeAreaView, ScrollView, View, Button, Image, TouchableOpacity} from 'react-native';
-import { List } from 'react-native-paper';
+import React, {useState} from 'react';
+import { Text, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable} from 'react-native';
 
 export default function MainScreen({navigation}) {
     return (
@@ -16,24 +15,52 @@ export default function MainScreen({navigation}) {
             </View>
             <ScrollView style={styles.scroll_view}>
                 <View style={styles.card_element}>
-                    <Text style={styles.card_content}>Hi</Text>
+                    <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', padding:10}}>
+                        <Text style={styles.text_content}>Calcium</Text>
+                        <Info/>
+                    </View>
                     <View style={styles.center}>
-                        <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')} center/>
+                        <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
                     </View>
                 </View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <View style={styles.card_element}></View>
-                <MyComponent></MyComponent>
             </ScrollView>
         </SafeAreaView>
     );
 }
+const Info = () => {
+    const [modalVisible, setModalVisible] = useState(false);
+    return (
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Hello World!</Text>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Hide Modal</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+        <Pressable
+          style={[styles.button, styles.buttonOpen]}
+          onPress={() => setModalVisible(true)}
+        >
+            <Image style={styles.moretinyLogo} source={require('../assets/info-icon.png')}/>
+        </Pressable>
+      </View>
+    );
+  };
 
 const styles = StyleSheet.create({
     container: {
@@ -60,13 +87,12 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#69A3BA',
         borderRadius: 20,
-        marginBottom: 30
+        marginBottom: 30,
     },
-    card_content: {
+    text_content: {
         fontSize: 20,
         color: 'white',
         fontWeight: '600',
-        padding: 15
     },
     tinyLogo: {
         width: 40,
@@ -79,31 +105,34 @@ const styles = StyleSheet.create({
     center: {
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
+    },
+    button: {
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2
+    },
+    buttonClose: {
+        backgroundColor: "#2196F3",
     }
 })
-
-const MyComponent = () => {
-    const [expanded, setExpanded] = React.useState(true);
-  
-    const handlePress = () => setExpanded(!expanded);
-  
-    return (
-      <List.Section title="Accordions">
-        <List.Accordion
-          title="Uncontrolled Accordion"
-          left={props => <List.Icon {...props} icon="folder" />}>
-          <List.Item title="First item" />
-          <List.Item title="Second item" />
-        </List.Accordion>
-  
-        <List.Accordion
-          title="Controlled Accordion"
-          left={props => <List.Icon {...props} icon="folder" />}
-          expanded={expanded}
-          onPress={handlePress}>
-          <List.Item title="First item" />
-          <List.Item title="Second item" />
-        </List.Accordion>
-      </List.Section>
-    );
-  };
