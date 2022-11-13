@@ -20,7 +20,9 @@ export default function MainScreen({navigation}) {
                         <Info/>
                     </View>
                     <View style={styles.center}>
-                        <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
+                        <TouchableOpacity onPress={() => navigation.navigate("Graph")}>
+                            <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
@@ -40,7 +42,7 @@ const Info = () => {
             setModalVisible(!modalVisible);
           }}
         >
-          <View style={styles.centeredView}>
+          <View>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>Hello World!</Text>
               <Pressable
@@ -106,14 +108,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-    },
     modalView: {
-        margin: 20,
+        marginHorizontal: 20,
+        marginVertical: 200,
         backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
@@ -129,7 +126,6 @@ const styles = StyleSheet.create({
     },
     button: {
         borderRadius: 20,
-        padding: 10,
         elevation: 2
     },
     buttonClose: {
