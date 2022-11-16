@@ -10,12 +10,12 @@ export default function MainScreen({navigation}) {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.horizontal}>
-                <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/filter-icon.png')}/>
+                <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                    <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
                 </TouchableOpacity>
                 <Text style={styles.heading}>BIOMARKERS</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/import-icon.png')}/>
+                <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                    <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
                 </TouchableOpacity>
             </View>
             <ScrollView style={styles.scroll_view}>
@@ -28,7 +28,7 @@ export default function MainScreen({navigation}) {
                         </View>
                         <View style={styles.center}>
                             <TouchableOpacity onPress={() => navigation.navigate("Graph")}>
-                                <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
+                                <Image style={styles.moretinyLogo} source={require('../assets/graph-icon.png')}/>
                             </TouchableOpacity>
                         </View>
                     </View>

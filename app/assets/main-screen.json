@@ -1,84 +1,105 @@
 [{
+    "key": "1",
     "name": "Vitamin A",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "2",
     "name": "Vitamin C",
     "info": "This vitamin is important for keeping body tissues, such as gums, bones, and blood vessels in good shape. Vitamin C is key if you get a cut because it helps you heal. It also helps the body absorb iron from food. Kids need iron to prevent anemia. This vitamin may also help your body fight off infections. If you get a cold, for instance, vitamin C can help shorten the amount of time you are sick."
 },
 {
+    "key": "3",
     "name": "Vitamin D",
     "info": "No bones about it . . . vitamin D is the vitamin you need for strong bones! It's also great for forming strong teeth. Vitamin D lends a hand to an important mineral — it helps your body absorb the calcium it needs. Vitamin D is made in the skin when exposed to sunlight, or you can get it from the foods you eat."
 },
 {
+    "key": "4",
     "name": "Vitamin E",
     "info": "Everybody needs E. This hard-working vitamin protects your cells and tissues from damage. It is also important for the health of red blood cells."
 },
 {
+    "key": "5",
     "name": "Vitamin K",
     "info": "Vitamin K is the clotmaster! Remember the last time you got a cut? Your blood did something special called clotting. This is when certain cells in your blood act like glue and stick together at the surface of the cut to help stop the bleeding."
 },
 {
+    "key": "6",
     "name": "Choline",
     "info": "Choline is a source of methyl groups needed for many steps in metabolism. The body needs choline to synthesize phosphatidylcholine and sphingomyelin, two major phospholipids vital for cell membranes."
 },
 {
+    "key": "7",
     "name": "Calcium",
     "info": "Calcium is the top mineral when it comes to your bones. This mineral helps build strong bones, so you can do everything from standing up straight to scoring that winning goal. It also helps build strong, healthy teeth, for chomping on tasty food."
 },
 {
+    "key": "8",
     "name": "Chloride",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "9",
     "name": "Chromium",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "10",
     "name": "Copper",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "11",
     "name": "Flouride",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": 12,
     "name": "Iodine",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "13",
     "name": "Iron",
     "info": "The body needs iron to make hemoglobin (say: HEE-muh-glo-bun). Hemoglobin is the part of your red blood cells that carries oxygen from your lungs to the rest of your body. Your entire body needs oxygen to stay healthy and alive."
 },
 {
+    "key": "14",
     "name": "Magnesium",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "15",
     "name": "Manganese",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "16",
     "name": "Molybdenum",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "17",
     "name": "Phosphorus",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "18",
     "name": "Potassium",
     "info": "Potassium (say: puh-TAH-see-um) keeps your muscles, heart, and nervous system working properly."
 },
 {
+    "key": "19",
     "name": "Selenium",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "20",
     "name": "Sodium",
     "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system."
 },
 {
+    "key": "21",
     "name": "Zinc",
     "info": "Zinc helps your immune system, which is your body's system for fighting off illnesses and infections. It also helps with cell growth and helps heal wounds, such as cuts."
 }
