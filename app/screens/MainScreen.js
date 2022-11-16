@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import { Text, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable} from 'react-native';
 
 export default function MainScreen({navigation}) {
+    let MainScreenJSON = require('../assets/main-screen.json');
+    let stringData = JSON.stringify(MainScreenJSON);
+    const data = JSON.parse(stringData)
+    const [biomarkers, setBiomarkers] = useState(data)
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.horizontal}>
@@ -14,22 +19,26 @@ export default function MainScreen({navigation}) {
                 </TouchableOpacity>
             </View>
             <ScrollView style={styles.scroll_view}>
-                <View style={styles.card_element}>
-                    <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', padding:10}}>
-                        <Text style={styles.text_content}>Calcium</Text>
-                        <Info/>
+            { biomarkers.map((item) => {
+                return (
+                    <View style={styles.card_element}>
+                        <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', padding:10}}>
+                            <Text style={styles.text_content}>{item.name}</Text>
+                            <Info>{item.info}</Info>
+                        </View>
+                        <View style={styles.center}>
+                            <TouchableOpacity onPress={() => navigation.navigate("Graph")}>
+                                <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.center}>
-                        <TouchableOpacity onPress={() => navigation.navigate("Graph")}>
-                            <Image style={styles.moretinyLogo} source={require('../assets/down-arrow.png')}/>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                )
+            })}
             </ScrollView>
         </SafeAreaView>
     );
 }
-const Info = () => {
+var Info = (info) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
       <View style={styles.centeredView}>
@@ -44,12 +53,12 @@ const Info = () => {
         >
           <View>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+              <Text style={styles.modalText}>{info.children}</Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={{color: 'blue'}}>Close</Text>
               </Pressable>
             </View>
           </View>
@@ -62,7 +71,7 @@ const Info = () => {
         </Pressable>
       </View>
     );
-  };
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -113,7 +122,7 @@ const styles = StyleSheet.create({
         marginVertical: 200,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: 20,
         alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
@@ -124,11 +133,16 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5
     },
+    modalText: {
+        fontSize: 15,
+        fontWeight: '600',
+        marginBottom: 10
+    },
     button: {
-        borderRadius: 20,
-        elevation: 2
+        // borderRadius: 10,
+        // elevation: 2
     },
     buttonClose: {
-        backgroundColor: "#2196F3",
+        //backgroundColor: "#2196F3",
     }
 })
