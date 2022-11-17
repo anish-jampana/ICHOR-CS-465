@@ -115,12 +115,14 @@ var Info = (info) => {
           <View>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>{info.children}</Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => setModalVisible(!modalVisible)}
-              >
-                <Text style={{color: 'blue'}}>Close</Text>
-              </Pressable>
+              <View style={{alignItems: 'center'}}>
+                <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(!modalVisible)}
+                >
+                    <Text style={{color: 'blue'}}>Close</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Modal>
