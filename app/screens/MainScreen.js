@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { Text, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable, Dimensions} from 'react-native';
+import { Text, Switch, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable, Dimensions} from 'react-native';
 import {
     BarChart,
   } from 'react-native-chart-kit';
+
 
 export default function MainScreen({navigation}) {
     let MainScreenJSON = require('../assets/main-screen.json');
@@ -14,9 +15,7 @@ export default function MainScreen({navigation}) {
         <SafeAreaView style={styles.container}>
             <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
                 <View style={styles.horizontal}>
-                    <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
-                        <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
-                    </TouchableOpacity>
+                    <Filter/>
                     <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
                         <Image style={styles.tinyLogo} source={require('../assets/white-profile-icon.png')}/>
                     </TouchableOpacity>
@@ -46,6 +45,60 @@ export default function MainScreen({navigation}) {
         </SafeAreaView>
     );
 }
+
+var Filter = () => {
+    const [modalVisible, setModalVisible] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+    return (
+        <View style={styles.centeredView}>
+            <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+            }}
+            >
+                <View>
+                    <View style={styles.modalView}>
+                        <View style={{alignItems: 'center'}}>
+                            <Text style={styles.modalText}>FILTERING OPTIONS</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', paddingVertical:10}}>
+                            <Text style={{fontWeight:'bold', fontSize:18}}>Show All Biomarkers</Text>
+                            <Switch
+                                style={{ transform: [{ scaleX: .8 }, { scaleY: .8 }] }}
+                                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                                thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                                ios_backgroundColor="#3e3e3e"
+                                onValueChange={toggleSwitch}
+                                value={isEnabled}
+                                />
+                        </View>
+                        <View style={{alignItems: 'center'}}>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={{color: 'blue'}}>Filter</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+            <Pressable
+            style={[styles.button, styles.buttonOpen]}
+            onPress={() => setModalVisible(true)}
+            >
+                <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
+            </Pressable>
+        </View>
+    );
+};
+
 var Info = (info) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
@@ -165,7 +218,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         padding: 20,
-        alignItems: "center",
+        //alignItems: "center",
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
