@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-import { Text, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable} from 'react-native';
+import { Text, StyleSheet, SafeAreaView, ScrollView, View, Image, TouchableOpacity, Alert, Modal, Pressable, Dimensions} from 'react-native';
+import {
+    BarChart,
+  } from 'react-native-chart-kit';
 
 export default function MainScreen({navigation}) {
     let MainScreenJSON = require('../assets/main-screen.json');
@@ -9,14 +12,18 @@ export default function MainScreen({navigation}) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.horizontal}>
-                <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.heading}>BIOMARKERS</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
-                </TouchableOpacity>
+            <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
+                <View style={styles.horizontal}>
+                    <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                        <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                        <Image style={styles.tinyLogo} source={require('../assets/white-profile-icon.png')}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                        <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
+                    </TouchableOpacity>
+                </View>
             </View>
             <ScrollView style={styles.scroll_view}>
             { biomarkers.map((item) => {
@@ -27,6 +34,7 @@ export default function MainScreen({navigation}) {
                             <Info>{item.info}</Info>
                         </View>
                         <View style={styles.center}>
+                            <MyStackedBarChart/>
                             <TouchableOpacity onPress={() => navigation.navigate("Graph")}>
                                 <Image style={styles.moretinyLogo} source={require('../assets/graph-icon.png')}/>
                             </TouchableOpacity>
@@ -73,6 +81,37 @@ var Info = (info) => {
     );
 };
 
+const MyStackedBarChart = () => {
+    return (
+        <>
+            <BarChart
+                style={{
+                    marginVertical: 8,
+                    borderRadius: 20
+                }}
+                data={{
+                    labels: ["Previous", "Current"],
+                    datasets: [
+                      {
+                        data: [30, 45]
+                      }
+                    ]
+                }}
+                fromZero={true}
+                width={250}
+                height={220}
+                chartConfig={{
+                    backgroundColor: '#1cc910',
+                    backgroundGradientFrom: '#eff3ff',
+                    backgroundGradientTo: '#efefef',
+                    decimalPlaces: 2,
+                    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                }}
+            />
+        </>
+    );
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -81,11 +120,14 @@ const styles = StyleSheet.create({
     horizontal: {
         flexDirection: 'row',
         alignItems: 'flex-end',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        backgroundColor: '#1285b0',
+        paddingVertical: 5,
+        borderRadius: 100
     },
     heading: {
         color: '#fff',
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: '600',
         marginTop: 30,
         marginBottom: 10,
@@ -106,8 +148,8 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     tinyLogo: {
-        width: 40,
-        height: 40
+        width: 38,
+        height: 38
     },
     moretinyLogo: {
         width: 25,

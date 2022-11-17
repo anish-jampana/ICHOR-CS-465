@@ -12,11 +12,44 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name='LogIn' component={LogInScreen}/>
-        <Stack.Screen name="Main" component={MainScreen}/>
+      <Stack.Navigator screenOptions={{headerShown: true}}>
+        <Stack.Screen name='LogIn' component={LogInScreen}
+          options={{
+            title: 'LOG IN',
+            headerStyle: {
+              backgroundColor: '#466B7A',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '600',
+              fontSize: 25
+            },
+          }}/>
+        <Stack.Screen name="Main" component={MainScreen}
+          options={{
+            title: 'BIOMARKERS',
+            headerStyle: {
+              backgroundColor: '#466B7A',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '600',
+              fontSize: 25
+            },
+          }}/>
         <Stack.Screen name="Import" component={ImportScreen}/>
-        <Stack.Screen name="Graph" component={GraphScreen}/>
+        <Stack.Screen name="Graph" component={GraphScreen}
+          options={{
+            title: 'BREAKDOWN',
+            headerStyle: {
+              backgroundColor: '#466B7A',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: '600',
+              fontSize: 25
+            },
+          }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

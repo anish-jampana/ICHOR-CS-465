@@ -43,11 +43,11 @@ const MyLineChart = () => {
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
           style: {
             borderRadius: 16,
-          },
+          }
         }}
         style={{
           marginVertical: 8,
-          borderRadius: 16,
+          borderRadius: 16
         }}
       />
     </>
@@ -59,17 +59,20 @@ const MyLineChart = () => {
 const App = ({navigation}) => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#466B7A' }}>
-      <View style={styles.horizontal}>
-                <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
-                </TouchableOpacity>
-                <Text style={styles.heading}>BIOMARKERS</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-                    <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
-                </TouchableOpacity>
+      <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
+          <View style={styles.horizontal}>
+              <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                  <Image style={styles.tinyLogo} source={require('../assets/white-filter-icon.png')}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                  <Image style={styles.tinyLogo} source={require('../assets/white-profile-icon.png')}/>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                  <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
+              </TouchableOpacity>
+          </View>
       </View>
-      
-      <ScrollView style={{padding:30}}>
+      <ScrollView style={{paddingHorizontal:30}}>
         <View style={styles.container}>
           <View>
             <MyLineChart />
@@ -127,7 +130,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-evenly',
-    backgroundColor: '#466B7A',
+    backgroundColor: '#1285b0',
+    paddingVertical: 5,
+    borderRadius: 100
   },
   heading: {
     color: '#fff',
