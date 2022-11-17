@@ -19,7 +19,7 @@ export default function MainScreen({navigation}) {
                     <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
                         <Image style={styles.tinyLogo} source={require('../assets/white-profile-icon.png')}/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Import")}>
                         <Image style={styles.tinyLogo} source={require('../assets/white-import-icon.png')}/>
                     </TouchableOpacity>
                 </View>
