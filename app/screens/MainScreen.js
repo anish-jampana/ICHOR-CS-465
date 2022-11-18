@@ -152,7 +152,7 @@ var Filter = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-  const [sliderValue, setSliderValue] = useState(0);
+  const [sliderValue, setSliderValue] = useState(1);
   
   return (
     <View style={styles.centeredView}>
@@ -181,6 +181,11 @@ var Filter = (props) => {
                 initialValues={{
                   A: false,
                   C: false,
+                  D: false,
+                  E: false,
+                  K: false,
+                  Calcium: false,
+                  Magnesium: false,
                   showAll: false,
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -190,29 +195,81 @@ var Filter = (props) => {
               >
                 {({ handleChange, handleSubmit, values, setFieldValue }) => (
                   <View>
-                    <CheckBox
-                      value={values?.A}
-                      handleChange={(nextValue) =>
-                        setFieldValue("A", nextValue)
-                      }
+                    <View
+                      style={{
+                        borderColor: "black",
+                        borderWidth: 1,
+                        padding: 10,
+                      }}
                     >
-                      Vitamin A
-                    </CheckBox>
+                      <CheckBox
+                        value={values?.A}
+                        handleChange={(nextValue) =>
+                          setFieldValue("A", nextValue)
+                        }
+                      >
+                        Vitamin A
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.C}
+                        handleChange={(nextValue) =>
+                          setFieldValue("C", nextValue)
+                        }
+                      >
+                        Vitamin C
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.D}
+                        handleChange={(nextValue) =>
+                          setFieldValue("D", nextValue)
+                        }
+                      >
+                        Vitamin D
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.E}
+                        handleChange={(nextValue) =>
+                          setFieldValue("E", nextValue)
+                        }
+                      >
+                        Vitamin E
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.K}
+                        handleChange={(nextValue) =>
+                          setFieldValue("K", nextValue)
+                        }
+                      >
+                        Vitamin K
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.Calcium}
+                        handleChange={(nextValue) =>
+                          setFieldValue("Calcium", nextValue)
+                        }
+                      >
+                        Calcium
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.Magnesium}
+                        handleChange={(nextValue) =>
+                          setFieldValue("Magnesium", nextValue)
+                        }
+                      >
+                        Magnesium
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.showAll}
+                        handleChange={(nextValue) =>
+                          setFieldValue("showAll", nextValue)
+                        }
+                      >
+                        Show All Biomarkers
+                      </CheckBox>
+                    </View>
                     <CheckBox
-                      value={values?.C}
-                      handleChange={(nextValue) =>
-                        setFieldValue("C", nextValue)
-                      }
                     >
-                      Vitamin C
-                    </CheckBox>
-                    <CheckBox
-                      value={values?.showAll}
-                      handleChange={(nextValue) =>
-                        setFieldValue("showAll", nextValue)
-                      }
-                    >
-                      Show All Biomarkers
+                      Sort by Abnormal Levels
                     </CheckBox>
                     <Slider
                       style={{ width: 200, height: 40 }}
@@ -226,7 +283,9 @@ var Filter = (props) => {
                       minimumTrackTintColor="#000000"
                       maximumTrackTintColor="#000000"
                     />
-              <Text style={{ color: "#000000" }}>{sliderValue} months</Text>
+                    <Text style={{ color: "#000000" }}>
+                      {sliderValue} months
+                    </Text>
                     <View
                       style={{
                         flexDirection: "row",
