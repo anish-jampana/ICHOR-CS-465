@@ -313,8 +313,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
   },
+
   importListScrollView: {
-    borderColor: "black",
+    borderColor: "white",
     borderWidth: 1,
   },
 
@@ -346,10 +347,13 @@ const PressableAddTest = styled(Pressable)`
 `;
 
 const ImportListScrollView = styled.ScrollView`
-  height: 80%;
+  height: 70%;
   border-width: 1px;
   border-top-color: white;
   border-top-width: 1px;
+  border-bottom-color: white;
+  border-bottom-width: 1px;
+  margin-bottom: 40px;
 `;
 
 const ListContainer = styled.View`
