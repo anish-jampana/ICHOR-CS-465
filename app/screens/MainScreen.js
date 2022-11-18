@@ -92,7 +92,7 @@ export default function MainScreen({ navigation }) {
         {Object.entries(biomarkers).map(([key, value]) => {
           return (
             value["display"] && (
-              <View style={styles.card_element}>
+              <View style={styles.card_element} key={key}>
                 <View
                   style={{
                     flexDirection: "row",
