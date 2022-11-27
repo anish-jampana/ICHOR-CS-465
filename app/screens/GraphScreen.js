@@ -40,14 +40,13 @@ const MyLineChart = () => {
           backgroundGradientFrom: '#eff3ff',
           backgroundGradientTo: '#efefef',
           decimalPlaces: 2,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          }
+          color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
         }}
         style={{
           marginVertical: 8,
-          borderRadius: 16
+          borderRadius: 16,
+          shadowOpacity: 0.5,
+          shadowOffset: {height: 1}
         }}
       />
     </>
@@ -58,7 +57,7 @@ const MyLineChart = () => {
 
 const App = ({navigation}) => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#466B7A' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#bec1c2' }}>
       <View style={{paddingHorizontal: 30, paddingVertical: 10}}>
           <View style={styles.horizontal}>
               <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
@@ -120,7 +119,7 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#466B7A',
+    backgroundColor: '#bec1c2',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
@@ -130,9 +129,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-end',
     justifyContent: 'space-evenly',
-    backgroundColor: '#1285b0',
+    backgroundColor: '#69A3BA',
     paddingVertical: 5,
-    borderRadius: 100
+    borderRadius: 100,
+    shadowOpacity: 0.5,
+    shadowOffset: {height: 1}
   },
   heading: {
     color: '#fff',
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   header: {
-    color:"#fff",
+    color: '#466B7A',
     textAlign: "center",
     fontSize: 20,
     fontWeight: '600',
@@ -158,6 +159,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#69A3BA',
     borderRadius: 20,
     marginBottom: 30,
+    shadowOpacity: 0.5,
+    shadowOffset: {height: 1}
   },
   header_content: {
     fontSize: 20,

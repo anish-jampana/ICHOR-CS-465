@@ -26,8 +26,8 @@ class Register extends React.Component {
             <View style={styles.registerContainer}>
               <View flex={0.25} middle style={styles.socialConnect}>
                 <View marginTop={40}>
-                  <Text color="#8898AA" size={15} >
-                    Sign in with
+                  <Text style={{color: "#fff", fontWeight: "bold", fontSize: 15}}>
+                    SIGN IN WITH
                   </Text>
                 </View>
                 
@@ -35,23 +35,23 @@ class Register extends React.Component {
                                 flexDirection: 'row',
                                 justifyContent: 'space-between' }}>
                 <Pressable style={{...styles.socialButtons, marginRight:30}} onPress={() => navigation.navigate("App")}>
-                <View >
+                <View style={{flexDirection: "row"}}>
                   <MaterialIcons 
                   name="facebook" 
                   size={16} 
-                  color="black" 
-                  style={{ marginTop: 2, marginRight: 5 }}/>
+                  color="white" 
+                  style={{ marginRight: 5 }}/>
                   <Text style={styles.socialTextButtons}>FaceBook</Text>
                 </View>
                 </Pressable>
 
                 <Pressable style={{...styles.socialButtons}} onPress={() => navigation.navigate("App")}>
-                <View >
+                <View style={{flexDirection: "row"}}>
                 <AntDesign 
                   name="google" 
                   size={16} 
-                  color="black" 
-                  style={{ marginTop: 2, marginRight: 5 }}/>
+                  color="white" 
+                  style={{ marginRight: 5 }}/>
                   <Text style={styles.socialTextButtons}>Google</Text>
                 </View>
                 </Pressable>
@@ -59,8 +59,8 @@ class Register extends React.Component {
               </View>
               <View flex>
                 <View flex={0.12} middle justifyContent= 'center' alignItems= 'center'>
-                  <Text color="#8898AA" size={12}>
-                    Or sign in with email
+                  <Text style={{color: "#fff", fontWeight: "bold", fontSize: 15}}>
+                    SIGN IN WITH EMAIL
                   </Text>
                 </View>
                 <View flex center>
@@ -73,7 +73,7 @@ class Register extends React.Component {
                     <MaterialIcons 
                           name="email" 
                           size={16} 
-                          color="black" 
+                          color="white" 
                           style={{ marginTop: 15, marginRight: 5 }}/>
                       <TextInput style={styles.input}
                         placeholder="Email"
@@ -83,7 +83,7 @@ class Register extends React.Component {
                     <MaterialIcons 
                           name="lock" 
                           size={16} 
-                          color="black" 
+                          color="white" 
                           style={{ marginTop: 15, marginRight: 5 }}/>
                       <TextInput style={styles.input}
                         password
@@ -138,16 +138,16 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#466B7A'
+    backgroundColor: '#bec1c2'
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 4,
+    borderRadius: 10,
     elevation: 3,
-    backgroundColor: '#348feb',
+    backgroundColor: '#466B7A',
     marginTop: 25,
     width: width*0.4
   },
@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    flex: 1
+    flex: 1,
+    backgroundColor: "#fff"
   },
   baseText: {
     size: 14,
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width * 0.9,
     height: height * 0.875,
-    backgroundColor: "#F4F5F7",
+    backgroundColor: "#69A3BA",
     borderRadius: 4,
     shadowColor: "black",
     shadowOffset: {
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
-    backgroundColor: "white",
+    backgroundColor: "#69A3BA",
     borderBottomWidth: 1,
     borderColor: "#8898AA"
   },
@@ -198,18 +199,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: "40%",
     height: 40,
-    backgroundColor: "#fff",
+    backgroundColor: "#466B7A",
     shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 4
     },
+    borderRadius: 10,
     shadowRadius: 8,
     shadowOpacity: 0.1,
     elevation: 1
   },
   socialTextButtons: {
-    color: "#2f5cc4",
+    color: "#fff",
     fontWeight: "800",
     fontSize: 14
   },
