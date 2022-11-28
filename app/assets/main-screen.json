@@ -41,36 +41,6 @@
         "info": "Calcium is the top mineral when it comes to your bones. This mineral helps build strong bones, so you can do everything from standing up straight to scoring that winning goal. It also helps build strong, healthy teeth, for chomping on tasty food.",
         "display": true
     },
-    "Chloride":{
-        "key": "8",
-        "name": "Chloride",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Chromium":{
-        "key": "9",
-        "name": "Chromium",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Copper":{
-        "key": "10",
-        "name": "Copper",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Flouride":{
-        "key": "11",
-        "name": "Flouride",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Iodine":{
-        "key": 12,
-        "name": "Iodine",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
     "Iron":{
         "key": "13",
         "name": "Iron",
@@ -80,18 +50,6 @@
     "Magnesium":{
         "key": "14",
         "name": "Magnesium",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Manganese":{
-        "key": "15",
-        "name": "Manganese",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
-    "Molybdenum":{
-        "key": "16",
-        "name": "Molybdenum",
         "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
         "display": true
     },
@@ -107,12 +65,6 @@
         "info": "Potassium (say: puh-TAH-see-um) keeps your muscles, heart, and nervous system working properly.",
         "display": true
     },
-    "Selenium":{
-        "key": "19",
-        "name": "Selenium",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
-        "display": true
-    },
     "Sodium":{
         "key": "20",
         "name": "Sodium",
@@ -125,5 +77,4 @@
         "info": "Zinc helps your immune system, which is your body's system for fighting off illnesses and infections. It also helps with cell growth and helps heal wounds, such as cuts.",
         "display": true
     }
-    
 }
