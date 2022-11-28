@@ -128,7 +128,7 @@ export default function MainScreen({ navigation }) {
 var Info = (info) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.centeredView}>
+    <View>
       <Modal
         animationType="slide"
         transparent={true}

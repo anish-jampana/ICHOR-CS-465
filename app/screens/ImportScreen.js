@@ -221,6 +221,7 @@ var PreviewTestModal = (data) => {
   return (
     <View>
       <Modal
+        style={{marginTop:50}}
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -229,9 +230,9 @@ var PreviewTestModal = (data) => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View>
+        <View style={styles.centeredView}>
           <View style={styles.modalView}>
-          <Text style={styles.modalText}>Blood Test Preview</Text>
+          <Text style={[styles.modalText, styles.bloodTestModalPadding]}>Blood Test Preview</Text>
             <Text style={styles.modalText}>{dataStringified}</Text>
             <View style={{ alignItems: "center" }}>
               <Pressable
@@ -368,6 +369,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#d3d3d3",
     borderRadius: 20,
     padding: 10
+  },
+  bloodTestModalPadding: {
+    paddingHorizontal:50
   }
 });
 
