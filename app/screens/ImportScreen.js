@@ -77,13 +77,7 @@ class TestListDisplay extends React.Component {
               value["display"] && (
                 <ComponentContainer key={value.id}>
                   <ListContainer>
-                    <CircleContainer>
-                      <MaterialIcons
-                        name="description"
-                        size={32}
-                        color="white"
-                      />
-                    </CircleContainer>
+                    <PreviewTestModal>{value["data"]}</PreviewTestModal>
                     <View>
                       <TextItem>{value["date"]}</TextItem>
                       {/* <TextDate>{value["date"]}</TextDate> */}
@@ -216,6 +210,51 @@ const AddTestModal = (props) => {
       </IconContainer>
     </View>
   );
+};
+
+var PreviewTestModal = (data) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  var dataStringified = JSON.stringify(data.children);
+  dataStringified = dataStringified.replace(/['"{}]+/g, '');
+  dataStringified = dataStringified.split(",").join("\n");
+  
+  return (
+    <View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View>
+          <View style={styles.modalView}>
+          <Text style={styles.modalText}>Blood Test Preview</Text>
+            <Text style={styles.modalText}>{dataStringified}</Text>
+            <View style={{ alignItems: "center" }}>
+              <Pressable
+                style={[styles.okButton, styles.buttonClose]}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.textStyle}>Close</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+      <IconContainer onPress={() => setModalVisible(true)}>
+        <CircleContainer>
+          <MaterialIcons
+            name="description"
+            size={32}
+            color="white"
+          />
+        </CircleContainer>
+      </IconContainer>
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({
