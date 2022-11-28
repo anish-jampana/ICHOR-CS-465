@@ -8,9 +8,10 @@ import {
   SafeAreaView,
 } from "react-native";
 import React, { useState } from "react";
-import testData from "../assets/bloodtest.json";
+import bloodTestData from "../assets/bloodtest.json";
 import { MaterialIcons } from "@expo/vector-icons";
 import styled from "styled-components";
+import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 
 function Header(props) {
   return (
@@ -23,50 +24,40 @@ function Header(props) {
   );
 }
 
-class Import extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      testData: testData,
-      mostRecent: false,
-    };
-  }
+const Import = ({navigation}) => {
 
-  handleRemoveTest(test) {
-    let testDataCopy = this.state.testData;
+  const testData = React.useContext(TestDataContext);
+  const setTestData = React.useContext(TestDataDispatchContext);
+  const [mostRecent, setMostRecent] = useState(false);
+
+  console.log("TEST DATA", testData)
+  function handleRemoveTest(test) {
+    let testDataCopy = Object.assign({}, testData, {});
     testDataCopy[test]["display"] = false;
-
-    this.setState({
-      testData: testDataCopy,
-    });
+    setTestData(testDataCopy);
   }
 
-  handleAddTest() {
-    let testDataCopy = this.state.testData;
+  function handleAddTest() {
+    let testDataCopy = Object.assign({}, testData, {});
     testDataCopy["test_recent"]["display"] = true;
-
-    this.setState({
-      testData: testDataCopy,
-      mostRecent: true,
-    });
+    setTestData(testDataCopy);
+    setMostRecent(true);
   }
 
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Header
-          handleAddTest={() => this.handleAddTest()}
-          mostRecent={this.state.mostRecent}
+  return (
+    <SafeAreaView style={styles.container}>
+      <Header
+        handleAddTest={() => handleAddTest()}
+        mostRecent={mostRecent}
+      />
+      <ComponentContainer>
+        <TestListDisplay
+          testData={testData}
+          handleRemoveTest={(test) => handleRemoveTest(test)}
         />
-        <ComponentContainer>
-          <TestListDisplay
-            testData={this.state.testData}
-            handleRemoveTest={(test) => this.handleRemoveTest(test)}
-          />
-        </ComponentContainer>
-      </SafeAreaView>
-    );
-  }
+      </ComponentContainer>
+    </SafeAreaView>
+  );
 }
 
 class TestListDisplay extends React.Component {
@@ -84,7 +75,7 @@ class TestListDisplay extends React.Component {
           {Object.entries(this.state.testData).map(
             ([test, value]) =>
               value["display"] && (
-                <ComponentContainer key={test}>
+                <ComponentContainer key={value.id}>
                   <ListContainer>
                     <CircleContainer>
                       <MaterialIcons
