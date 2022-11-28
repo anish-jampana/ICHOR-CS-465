@@ -7,7 +7,7 @@ import ImportScreen from "./app/screens/ImportScreen";
 import GraphScreen from "./app/screens/GraphScreen";
 import LogInScreen from "./app/screens/LogInScreen";
 import React, { createContext, useState } from "react";
-import {TestDataProvider} from "./app/components/TestDataProvider.js";
+import { TestDataProvider } from "./app/components/TestDataProvider.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +24,9 @@ export default function App() {
             options={{
               title: "LOG IN",
               headerStyle: {
-                backgroundColor: "#466B7A",
+                backgroundColor: "#bec1c2",
               },
-              headerTintColor: "#fff",
+              headerTintColor: "#466B7A",
               headerTitleStyle: {
                 fontWeight: "600",
                 fontSize: 25,
@@ -39,9 +39,9 @@ export default function App() {
             options={{
               title: "BIOMARKERS",
               headerStyle: {
-                backgroundColor: "#466B7A",
+                backgroundColor: "#bec1c2", //used to be blue
               },
-              headerTintColor: "#fff",
+              headerTintColor: "#466B7A", //used to be white
               headerTitleStyle: {
                 fontWeight: "600",
                 fontSize: 25,
@@ -69,9 +69,9 @@ export default function App() {
             options={{
               title: "BREAKDOWN",
               headerStyle: {
-                backgroundColor: "#466B7A",
+                backgroundColor: "#bec1c2",
               },
-              headerTintColor: "#fff",
+              headerTintColor: "#466B7A",
               headerTitleStyle: {
                 fontWeight: "600",
                 fontSize: 25,

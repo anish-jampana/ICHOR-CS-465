@@ -91,7 +91,7 @@ export default function MainScreen({ navigation }) {
         {Object.entries(biomarkers).map(([key, value]) => {
           return (
             value["display"] && (
-              <View style={styles.card_element}>
+              <View style={styles.card_element} key={key}>
                 <View
                   style={{
                     flexDirection: "row",
@@ -189,7 +189,7 @@ const MyStackedBarChart = () => {
           backgroundGradientFrom: "#eff3ff",
           backgroundGradientTo: "#efefef",
           decimalPlaces: 2,
-          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
         }}
       />
     </>
@@ -199,15 +199,17 @@ const MyStackedBarChart = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#466B7A",
+    backgroundColor: "#bec1c2",
   },
   horizontal: {
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-evenly",
-    backgroundColor: "#1285b0",
+    backgroundColor: "#69A3BA",
     paddingVertical: 5,
     borderRadius: 100,
+    shadowOpacity: 0.5,
+    shadowOffset: {height: 1}
   },
   heading: {
     color: "#fff",
@@ -225,6 +227,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#69A3BA",
     borderRadius: 20,
     marginBottom: 30,
+    shadowOpacity: 0.5,
+    shadowOffset: {height: 1}
   },
   text_content: {
     fontSize: 20,
