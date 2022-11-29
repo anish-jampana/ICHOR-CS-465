@@ -18,7 +18,8 @@ import {
   Dimensions,
 } from "react-native";
 
-const CheckBox = ({ children, value, handleChange }) => {
+const CheckBoxLock = ({ children, value, handleChange }) => {
+
   return (
     <View>
       <View
@@ -35,7 +36,44 @@ const CheckBox = ({ children, value, handleChange }) => {
           onValueChange={handleChange}
           //   {...props}
         />
-        <Text>  </Text>
+        <Text> </Text>
+        <Text>{children}</Text>
+      </View>
+    </View>
+  );
+
+
+}
+
+const CheckBox = ({ children, value, handleChange, lockFilter}) => {
+
+  return (
+    <View>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingVertical: 10,
+        }}
+      >
+        {lockFilter ? (
+          <Checkbox
+            disabled
+            type={"checkbox"}
+            // value={value}
+            onValueChange={handleChange}
+            //   {...props}
+          />
+        ) : (
+          <Checkbox
+            type={"checkbox"}
+            value={value}
+            onValueChange={handleChange}
+            //   {...props}
+          />
+        )}
+        <Text> </Text>
         <Text>{children}</Text>
       </View>
     </View>
@@ -47,7 +85,13 @@ var Filter = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [sliderValue, setSliderValue] = useState(1);
-  
+  const [lockFilter, setLockFilter] = useState(false);
+
+  const handleCancel = () => {
+    setModalVisible(!modalVisible)
+    setLockFilter(false);
+  }
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -79,12 +123,23 @@ var Filter = (props) => {
                   E: false,
                   K: false,
                   Calcium: false,
-                  Magnesium: false,
+                  Choline: false,
+                  Chloride: false,
+                  Chromium: false,
+                  Copper: false,
                   showAll: false,
                 }}
                 onSubmit={(values, { resetForm }) => {
+                  Object.entries(values).map(([key, value]) => {
+                    if (value) {
+                      props.handleChangeBiomarkers(values);
+                      setModalVisible(!modalVisible);
+                      return;
+                    }
+                  });
+
                   setModalVisible(!modalVisible);
-                  props.handleChangeBiomarkers(values);
+                  setLockFilter(false);
                 }}
               >
                 {({ handleChange, handleSubmit, values, setFieldValue }) => (
@@ -101,6 +156,7 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("A", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Vitamin A
                       </CheckBox>
@@ -109,6 +165,7 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("C", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Vitamin C
                       </CheckBox>
@@ -117,6 +174,7 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("D", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Vitamin D
                       </CheckBox>
@@ -125,6 +183,7 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("E", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Vitamin E
                       </CheckBox>
@@ -133,6 +192,7 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("K", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Vitamin K
                       </CheckBox>
@@ -141,45 +201,40 @@ var Filter = (props) => {
                         handleChange={(nextValue) =>
                           setFieldValue("Calcium", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
                         Calcium
                       </CheckBox>
                       <CheckBox
-                        value={values?.Magnesium}
+                        value={values?.Choline}
                         handleChange={(nextValue) =>
-                          setFieldValue("Magnesium", nextValue)
+                          setFieldValue("Choline", nextValue)
                         }
+                        lockFilter={lockFilter}
                       >
-                        Magnesium
+                        Choline
                       </CheckBox>
                       <CheckBox
-                        value={values?.showAll}
+                        value={values?.Chloride}
                         handleChange={(nextValue) =>
-                          setFieldValue("showAll", nextValue)
+                          setFieldValue("Chloride", nextValue)
                         }
+                        lockFilter={lockFilter}
+                      >
+                        Chloride
+                      </CheckBox>
+                      <CheckBoxLock
+                        value={values?.showAll}
+                        handleChange={(nextValue) => {
+                          setFieldValue("showAll", nextValue);
+                          setLockFilter(!lockFilter)
+                        }}
+                        lockFilter={lockFilter}
                       >
                         Show All Biomarkers
-                      </CheckBox>
+                      </CheckBoxLock>
                     </View>
-                    <CheckBox
-                    >
-                      Sort by Abnormal Levels
-                    </CheckBox>
-                    <Slider
-                      style={{ width: 200, height: 40 }}
-                      minimumValue={1}
-                      maximumValue={12}
-                      step={1}
-                      value={sliderValue}
-                      onValueChange={(sliderValue) =>
-                        setSliderValue(sliderValue)
-                      }
-                      minimumTrackTintColor="#000000"
-                      maximumTrackTintColor="#000000"
-                    />
-                    <Text style={{ color: "#000000" }}>
-                      {sliderValue} months
-                    </Text>
+                    <CheckBox>Sort by Abnormal Levels</CheckBox>
                     <View
                       style={{
                         flexDirection: "row",
@@ -190,7 +245,7 @@ var Filter = (props) => {
                     >
                       <Button onPress={handleSubmit} title="Apply"></Button>
                       <Button
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => handleCancel()}
                         title="Cancel"
                       ></Button>
                     </View>

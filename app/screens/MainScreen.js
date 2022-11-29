@@ -18,14 +18,19 @@ import {
 
 import { BarChart } from "react-native-chart-kit";
 
+import {XAxis} from "react-native-svg-charts";
+
 import Filter from "../components/Filter.js"
 
+import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 
 export default function MainScreen({ navigation }) {
   let MainScreenJSON = require("../assets/main-screen.json");
   let stringData = JSON.stringify(MainScreenJSON);
   const data = JSON.parse(stringData);
   const [biomarkers, setBiomarkers] = useState(data);
+
+  const testData = React.useContext(TestDataContext);
 
   function handleChangeBiomarkers(biomarker) {
     let biomarkersCopy = biomarkers;
@@ -104,7 +109,7 @@ export default function MainScreen({ navigation }) {
                   <Info>{value.info}</Info>
                 </View>
                 <View style={styles.center}>
-                  <MyStackedBarChart />
+                  <StackedBarChart testData={testData} biomarker={key}/>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Graph")}
                   >
@@ -165,7 +170,33 @@ var Info = (info) => {
   );
 };
 
-const MyStackedBarChart = () => {
+const StackedBarChart = ({testData, biomarker}) => {
+  compareTests = [];
+
+  Object.entries(testData).map(([test, value]) => {
+    if (value["display"]) {
+      compareTests.push(value);
+    }
+  });
+
+  const [currentTest, previousTest] = compareTests;
+
+  const currentDataLabel  = currentTest["date"]
+  const previousDataLabel = previousTest["date"]
+  const currentDataPoint = currentTest["data"][biomarker];
+  const previousDataPoint = previousTest["data"][biomarker];
+
+  // console.log(previousDataPoint, currentDataPoint)
+  
+  // console.log("first test", firstTest["data"])
+  // console.log("second test", secondTest["data"])
+
+  // const firstTestData = firstTest.data[biomarker]
+  // const secondTestData = firstTest.data[biomarker]
+
+  // console.log(firstTestData, secondTestData)
+
+
   return (
     <>
       <BarChart
@@ -174,10 +205,10 @@ const MyStackedBarChart = () => {
           borderRadius: 20,
         }}
         data={{
-          labels: ["Previous", "Current"],
+          labels: [`${previousDataLabel}`, `${currentDataLabel}`],
           datasets: [
             {
-              data: [30, 45],
+              data: [previousDataPoint, currentDataPoint],
             },
           ],
         }}
