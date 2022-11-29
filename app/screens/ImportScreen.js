@@ -1,4 +1,5 @@
 import {
+  Image,
   Alert,
   Modal,
   StyleSheet,
@@ -30,7 +31,6 @@ const Import = ({navigation}) => {
   const setTestData = React.useContext(TestDataDispatchContext);
   const [mostRecent, setMostRecent] = useState(false);
 
-  console.log("TEST DATA", testData)
   function handleRemoveTest(test) {
     let testDataCopy = Object.assign({}, testData, {});
     testDataCopy[test]["display"] = false;
@@ -46,10 +46,7 @@ const Import = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header
-        handleAddTest={() => handleAddTest()}
-        mostRecent={mostRecent}
-      />
+      <Header handleAddTest={() => handleAddTest()} mostRecent={mostRecent} />
       <ComponentContainer>
         <TestListDisplay
           testData={testData}
