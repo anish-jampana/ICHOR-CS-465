@@ -1,3 +1,4 @@
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import Checkbox from 'expo-checkbox';
 import { Formik, Field, Form } from "formik";
@@ -257,10 +258,7 @@ var Filter = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Image
-          style={styles.tinyLogo}
-          source={require("../assets/white-filter-icon.png")}
-        />
+        <MaterialCommunityIcons name="filter" size={40} color="white" />
       </Pressable>
     </View>
   );

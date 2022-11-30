@@ -21,7 +21,7 @@ import { BarChart } from "react-native-chart-kit";
 import {XAxis} from "react-native-svg-charts";
 
 import Filter from "../components/Filter.js"
-
+import { MaterialIcons, Octicons, Foundation} from '@expo/vector-icons'; 
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 import { BiomarkerContext, BiomarkerDispatchContext } from "../components/BiomarkerProvider.js";
 
@@ -87,16 +87,10 @@ export default function MainScreen({ navigation }) {
             }
           />
           <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
-            <Image
-              style={styles.tinyLogo}
-              source={require("../assets/white-profile-icon.png")}
-            />
+            <MaterialIcons name="person" size={40} color="white" />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-            <Image
-              style={styles.tinyLogo}
-              source={require("../assets/white-import-icon.png")}
-            />
+            <MaterialIcons name="upload-file" size={40} color="white" />
           </TouchableOpacity>
         </View>
       </View>
@@ -121,10 +115,14 @@ export default function MainScreen({ navigation }) {
                   <TouchableOpacity
                     onPress={() => handleGraphView(key)}
                   >
-                    <Image
-                      style={styles.moretinyLogo}
-                      source={require("../assets/graph-icon.png")}
-                    />
+                    <View style={{flexDirection: "row", backgroundColor: "#466B7A", padding: 5, borderRadius: 5}}>
+                      <Octicons
+                        name="graph" 
+                        size={16} 
+                        color="white" 
+                        style={{ marginRight: 5 }}/>
+                        <Text style={styles.textButtons}>Detailed Graph</Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -169,10 +167,7 @@ var Info = (info) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Image
-          style={styles.moretinyLogo}
-          source={require("../assets/info-icon.png")}
-        />
+        <Foundation name="info" size={29} color="white" />
       </Pressable>
     </View>
   );
@@ -303,4 +298,9 @@ const styles = StyleSheet.create({
   buttonClose: {
     //backgroundColor: "#2196F3",
   },
+  textButtons: {
+    color: "#fff",
+    fontWeight: "800",
+    fontSize: 14
+  }
 });
