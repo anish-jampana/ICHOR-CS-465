@@ -124,9 +124,6 @@ var Filter = (props) => {
                   K: false,
                   Calcium: false,
                   Choline: false,
-                  Chloride: false,
-                  Chromium: false,
-                  Copper: false,
                   showAll: false,
                 }}
                 onSubmit={(values, { resetForm }) => {
@@ -204,24 +201,6 @@ var Filter = (props) => {
                         lockFilter={lockFilter}
                       >
                         Calcium
-                      </CheckBox>
-                      <CheckBox
-                        value={values?.Choline}
-                        handleChange={(nextValue) =>
-                          setFieldValue("Choline", nextValue)
-                        }
-                        lockFilter={lockFilter}
-                      >
-                        Choline
-                      </CheckBox>
-                      <CheckBox
-                        value={values?.Chloride}
-                        handleChange={(nextValue) =>
-                          setFieldValue("Chloride", nextValue)
-                        }
-                        lockFilter={lockFilter}
-                      >
-                        Chloride
                       </CheckBox>
                       <CheckBoxLock
                         value={values?.showAll}
