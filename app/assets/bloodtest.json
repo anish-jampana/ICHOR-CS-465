@@ -90,7 +90,7 @@
         "display": true,
         "date": "10/28/22",
         "data": {
-            "A": 0,
+            "A": 40,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -120,7 +120,7 @@
         "display": true,
         "date": "10/21/22",
         "data": {
-            "A": 0,
+            "A": 50,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -150,7 +150,7 @@
         "display": true,
         "date": "10/14/22",
         "data": {
-            "A": 0,
+            "A": 45,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -180,7 +180,7 @@
         "display": true,
         "date": "10/07/22",
         "data": {
-            "A": 0,
+            "A": 30,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -209,7 +209,7 @@
         "display": true,
         "date": "09/30/22",
         "data": {
-            "A": 0,
+            "A": 25,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -238,7 +238,7 @@
         "display": true,
         "date": "09/23/22",
         "data": {
-            "A": 0,
+            "A": 20,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -267,7 +267,7 @@
         "display": true,
         "date": "09/16/22",
         "data": {
-            "A": 0,
+            "A": 15,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -296,7 +296,7 @@
         "display": true,
         "date": "09/09/22",
         "data": {
-            "A": 0,
+            "A": 30,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -325,7 +325,7 @@
         "display": true,
         "date": "09/02/22",
         "data": {
-            "A": 0,
+            "A": 55,
             "C": 0,
             "D": 0,
             "E": 0,
@@ -348,64 +348,6 @@
             "Zinc": 0
         },
         "id": 11
-    },
-
-    "test_12": {
-        "display": true,
-        "date": "09/26/22",
-        "data": {
-            "A": 0,
-            "C": 0,
-            "D": 0,
-            "E": 0,
-            "K": 0,
-            "Choline": 0,
-            "Calcium": 0,
-            "Chloride": 0,
-            "Chromium": 0,
-            "Copper": 0,
-            "Flouride": 0,
-            "Iodine": 0,
-            "Iron": 0,
-            "Magnesium": 0,
-            "Manganese": 0,
-            "Molybdenum": 0,
-            "Phosphorus": 0,
-            "Potassium": 0,
-            "Selenium": 0,
-            "Sodium": 0,
-            "Zinc": 0
-        },
-        "id": 12
-    },
-
-    "test_13": {
-        "display": true,
-        "date": "09/19/22",
-        "data": {
-            "A": 0,
-            "C": 0,
-            "D": 0,
-            "E": 0,
-            "K": 0,
-            "Choline": 0,
-            "Calcium": 0,
-            "Chloride": 0,
-            "Chromium": 0,
-            "Copper": 0,
-            "Flouride": 0,
-            "Iodine": 0,
-            "Iron": 0,
-            "Magnesium": 0,
-            "Manganese": 0,
-            "Molybdenum": 0,
-            "Phosphorus": 0,
-            "Potassium": 0,
-            "Selenium": 0,
-            "Sodium": 0,
-            "Zinc": 0
-        },
-        "id": 13
     }
 
 }

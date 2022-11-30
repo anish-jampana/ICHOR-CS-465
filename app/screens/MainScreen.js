@@ -23,6 +23,7 @@ import {XAxis} from "react-native-svg-charts";
 import Filter from "../components/Filter.js"
 
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
+import { BiomarkerContext, BiomarkerDispatchContext } from "../components/BiomarkerProvider.js";
 
 export default function MainScreen({ navigation }) {
   let MainScreenJSON = require("../assets/main-screen.json");
@@ -63,6 +64,13 @@ export default function MainScreen({ navigation }) {
     }
 
 
+  }
+
+  const setBiomarker = React.useContext(BiomarkerDispatchContext);
+
+  function handleGraphView(biomarker) {
+    setBiomarker(biomarker);
+    navigation.navigate("Graph");
   }
 
   return (
@@ -111,7 +119,7 @@ export default function MainScreen({ navigation }) {
                 <View style={styles.center}>
                   <StackedBarChart testData={testData} biomarker={key}/>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate("Graph")}
+                    onPress={() => handleGraphView(key)}
                   >
                     <Image
                       style={styles.moretinyLogo}
@@ -185,17 +193,6 @@ const StackedBarChart = ({testData, biomarker}) => {
   const previousDataLabel = previousTest["date"]
   const currentDataPoint = currentTest["data"][biomarker];
   const previousDataPoint = previousTest["data"][biomarker];
-
-  // console.log(previousDataPoint, currentDataPoint)
-  
-  // console.log("first test", firstTest["data"])
-  // console.log("second test", secondTest["data"])
-
-  // const firstTestData = firstTest.data[biomarker]
-  // const secondTestData = firstTest.data[biomarker]
-
-  // console.log(firstTestData, secondTestData)
-
 
   return (
     <>
