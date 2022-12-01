@@ -225,6 +225,8 @@ const StackedBarChart = ({testData, biomarker}) => {
         style={{
           marginVertical: 8,
           borderRadius: 20,
+          shadowOpacity: 0.5,
+          shadowOffset: {height: 1}
         }}
         data={{
           labels: [`${previousDataLabel}`, `${currentDataLabel}`],
@@ -252,13 +254,13 @@ const StackedBarChart = ({testData, biomarker}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#bec1c2",
+    backgroundColor: "#D3D3D3",
   },
   horizontal: {
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-evenly",
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#4895d9",
     paddingVertical: 5,
     borderRadius: 100,
     shadowOpacity: 0.5,
@@ -277,7 +279,7 @@ const styles = StyleSheet.create({
   },
   card_element: {
     padding: 10,
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#4895d9",
     borderRadius: 20,
     marginBottom: 30,
     shadowOpacity: 0.5,

@@ -139,7 +139,7 @@ const RemoveTestWarningModal = (props) => {
         </View>
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
-        <MaterialIcons name="delete" size={28} color="white" />
+        <MaterialIcons name="delete" size={28} color="#466B7A" />
       </IconContainer>
     </View>
   );
@@ -204,7 +204,7 @@ const AddTestModal = (props) => {
         </View>
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
-        <MaterialIcons name="add-circle-outline" size={32} color="white" />
+        <MaterialIcons name="add-circle-outline" size={32} color="#466B7A" />
       </IconContainer>
     </View>
   );
@@ -261,7 +261,7 @@ var PreviewTestModal = (data) => {
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
         <CircleContainer>
-          <MaterialIcons name="description" size={32} color="white" />
+          <MaterialIcons name="description" size={32} color="#466B7A" />
         </CircleContainer>
       </IconContainer>
     </View>
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#466B7A",
+    backgroundColor: "#D3D3D3",
   },
   title: {
     textAlign: "center",
@@ -364,7 +364,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    backgroundColor: "#466B7A",
+    backgroundColor: "#D3D3D3",
     marginRight: 20
   },
   heading: {
@@ -393,9 +393,9 @@ const PressableAddTest = styled(Pressable)`
 const ImportListScrollView = styled.ScrollView`
   height: 70%;
   border-width: 1px;
-  border-top-color: white;
+  border-top-color: #466B7A;
   border-top-width: 1px;
-  border-bottom-color: white;
+  border-bottom-color: #466B7A;
   border-bottom-width: 1px;
   margin-bottom: 40px;
 `;
@@ -405,7 +405,7 @@ const ListContainer = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom-color: white;
+  border-bottom-color: #466B7A;
   border-bottom-width: 1px;
 `;
 
@@ -426,7 +426,7 @@ const AddTestModalContainer = styled.View`
 `;
 
 const TextItem = styled.Text`
-  color: white;
+  color: #466B7A;
   width: 240px;
   height: auto;
   font-size: 20px;
@@ -448,7 +448,7 @@ const CircleContainer = styled.View`
   margin-top: 10px;
   margin-left: 10px;
   border-radius: 20px;
-  border-color: white;
+  border-color: #466B7A;
   border-width: 1px;
 `;
 

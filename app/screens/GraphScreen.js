@@ -112,7 +112,7 @@ const App = ({navigation}) => {
   });
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#bec1c2" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#D3D3D3" }}>
       <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
         <View style={styles.horizontal}>
           <TimeFilter
@@ -220,7 +220,7 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#bec1c2',
+    backgroundColor: '#D3D3D3',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
   },
   card_element: {
     padding: 10,
-    backgroundColor: '#69A3BA',
+    backgroundColor: '#4895d9',
     borderRadius: 20,
     marginBottom: 30,
     shadowOpacity: 0.5,

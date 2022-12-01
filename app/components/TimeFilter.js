@@ -4,6 +4,7 @@ import { Formik, Field, Form } from "formik";
 import { RadioButton } from 'react-native-paper';
 import React, { useState, useEffect, useContext} from "react";
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
+import { MaterialCommunityIcons} from '@expo/vector-icons';
 import {
   Button,
   Text,
@@ -127,10 +128,7 @@ const TimeFilter = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Image
-          style={styles.tinyLogo}
-          source={require("../assets/white-filter-icon.png")}
-        />
+        <MaterialCommunityIcons name="filter" size={40} color="#466B7A" />
       </Pressable>
     </View>
   );
