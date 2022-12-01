@@ -5,7 +5,9 @@
         "info": "Calcium is the top mineral when it comes to your bones. This mineral helps build strong bones, so you can do everything from standing up straight to scoring that winning goal. It also helps build strong, healthy teeth, for chomping on tasty food.",
         "display": true,
         "range": [15, 60],
-        "units": "mcg/dL"
+        "units": "mcg/dL",
+        "requirements" : "",
+        "suggestions" : ""
 
     },
     "Choline":{

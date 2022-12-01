@@ -77,6 +77,7 @@ const BiomarkerLineChart = (props) => {
 
 const App = ({navigation}) => {
   const biomarker = React.useContext(BiomarkerContext);
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
 
   const testData = React.useContext(TestDataContext);
   let defaultNumberTests = 0
@@ -136,7 +137,7 @@ const App = ({navigation}) => {
             }}
           >
             <Text style={styles.header_content}>
-              Calcium daily requirements
+              Daily Requirement:
             </Text>
             <Text style={styles.text_content}>
               Men: 1,000 mg {"\n"}Women: 1,000 mg
@@ -152,15 +153,10 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>Benefits of calcium</Text>
+            <Text style={styles.header_content}>Importance to Your Health:</Text>
             <Text style={styles.text_content}>
-              Your body needs calcium to build and maintain strong bones. Your
-              heart, muscles and nerves also need calcium to function properly.
-              {"\n"}
-              {"\n"}Some studies suggest that calcium, along with vitamin D, may
-              have benefits beyond bone health: perhaps protecting against
-              cancer, diabetes and high blood pressure. But evidence about such
-              health benefits is not definitive.{" "}
+              {biomarkerInfo[biomarker]["info"]}
+
             </Text>
           </View>
         </View>
@@ -266,6 +262,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     fontWeight: '600',
+    marginBottom: 4
   },
   text_content:{
     fontSize: 16,
