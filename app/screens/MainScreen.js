@@ -30,16 +30,29 @@ export default function MainScreen({ navigation }) {
   let stringData = JSON.stringify(MainScreenJSON);
   const data = JSON.parse(stringData);
   const [biomarkers, setBiomarkers] = useState(data);
+  const [displayBiomarkers, setDisplayBiomarkers] = useState({...biomarkers});
 
   const testData = React.useContext(TestDataContext);
 
   function handleChangeBiomarkers(biomarker) {
     let biomarkersCopy = biomarkers;
     let objects = Object.entries(biomarker);
+    let sortPriority = false;
 
     if (
-      objects[objects.length-1][0] == "showAll" &&
+      objects[objects.length-1][0] == "sortPriority" &&
       objects[objects.length-1][1] == true
+    ) {
+      sortPriority = true;
+    }
+
+    //remove sortPriority from object entries
+    objects.pop()
+
+
+    if (
+      objects[objects.length - 1][0] == "showAll" &&
+      objects[objects.length - 1][1] == true
     ) {
       Object.entries(biomarkersCopy).map(
         ([key, value]) => (biomarkersCopy[key]["display"] = true)
@@ -47,14 +60,13 @@ export default function MainScreen({ navigation }) {
       setBiomarkers({ ...biomarkersCopy });
       return;
     } else {
-
       Object.entries(biomarkersCopy).map(([key, value]) => {
         if (key != "showAll") {
           biomarkersCopy[key]["display"] = false;
         }
       });
 
-      Object.entries(biomarker).map(([key, value]) => {
+      objects.map(([key, value]) => {
         if (key != "showAll") {
           biomarkersCopy[key]["display"] = value;
         }
@@ -62,6 +74,24 @@ export default function MainScreen({ navigation }) {
 
       setBiomarkers({ ...biomarkersCopy });
     }
+
+    if (sortPriority) {
+      const display = {"Calcium" : biomarkers["Calcium"]}
+
+      Object.entries(display).map(([key, value]) => {
+        console.log(key, value)
+        if (biomarkers[key]["display"]) {
+          display[key]["display"] = true;
+        }
+      });
+
+      setDisplayBiomarkers(display);
+    
+    } else {
+      setDisplayBiomarkers({ ...biomarkers });
+    }
+
+
 
 
   }
@@ -95,7 +125,7 @@ export default function MainScreen({ navigation }) {
         </View>
       </View>
       <ScrollView style={styles.scroll_view}>
-        {Object.entries(biomarkers).map(([key, value]) => {
+        {Object.entries(displayBiomarkers).map(([key, value]) => {
           return (
             value["display"] && (
               <View style={styles.card_element} key={key}>

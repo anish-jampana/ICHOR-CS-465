@@ -31,8 +31,9 @@ const BiomarkerLineChart = (props) => {
     loadedData.push(value["data"][biomarker])
   });
 
-  const biomarkerInfo = React.useContext(BiomarkerInfoContext)
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
   const biomarkerName = biomarkerInfo[biomarker]["name"]
+  const biomarkerUnits =  biomarkerInfo[biomarker]["units"]
 
   //TODO: Get units from biomarkerInfo, 
   //display healthy range at top of graph with units,
@@ -40,7 +41,7 @@ const BiomarkerLineChart = (props) => {
 
   return (
     <>
-      <Text style={styles.header}>{biomarkerName} (mcg/dL)</Text>
+      <Text style={styles.header}>{biomarkerName} ({biomarkerUnits})</Text>
       <LineChart
         data={{
           labels: props.labels.reverse(),

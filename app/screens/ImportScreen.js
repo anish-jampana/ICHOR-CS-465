@@ -13,6 +13,7 @@ import bloodTestData from "../assets/bloodtest.json";
 import { MaterialIcons } from "@expo/vector-icons";
 import styled from "styled-components";
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
+import {BiomarkerInfoContext, BiomarkerInfoDispatchContext} from "../components/BiomarkerInfoProvider.js"
 
 function Header(props) {
   return (
@@ -210,15 +211,27 @@ const AddTestModal = (props) => {
 };
 
 var PreviewTestModal = (data) => {
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
+
   const [modalVisible, setModalVisible] = useState(false);
   var dataStringified = JSON.stringify(data.children);
   dataStringified = dataStringified.replace(/['"{}]+/g, '');
   dataStringified = dataStringified.split(",").join("\n");
+
+  console.log(data.children)
+  const dataDisplay = [];
+  Object.entries(data["children"]).map(([key, value]) => {
+    const units = biomarkerInfo[key]["units"];
+    console.log(units)
+    dataDisplay.push(key + ": " + value + " " + units)
+  })
+
+  console.log(dataDisplay)
   
   return (
     <View>
       <Modal
-        style={{marginTop:50}}
+        style={{ marginTop: 50 }}
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -229,8 +242,12 @@ var PreviewTestModal = (data) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-          <Text style={[styles.modalText, styles.bloodTestModalPadding]}>Blood Test Preview</Text>
-            <Text style={styles.modalText}>{dataStringified}</Text>
+            <Text style={[styles.modalText, styles.bloodTestModalPadding]}>
+              Blood Test Preview
+            </Text>
+            {dataDisplay.map((value) => 
+              <Text style={styles.modalText}>{value}</Text>
+            )}
             <View style={{ alignItems: "center" }}>
               <Pressable
                 style={[styles.okButton, styles.buttonClose]}
@@ -244,15 +261,11 @@ var PreviewTestModal = (data) => {
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
         <CircleContainer>
-          <MaterialIcons
-            name="description"
-            size={32}
-            color="white"
-          />
+          <MaterialIcons name="description" size={32} color="white" />
         </CircleContainer>
       </IconContainer>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
