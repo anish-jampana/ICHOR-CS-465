@@ -261,7 +261,7 @@ var Filter = (props) => {
                         </View>
                       </View>
                       <View style={styles.horizontalFilter}>
-                        <View style={{ paddingLeft: 18 }}>
+                        <View style={{ paddingLeft: 18, paddingRight: 2 }}>
                           <CheckBox
                             value={values?.Iron}
                             handleChange={(nextValue) =>
@@ -272,7 +272,7 @@ var Filter = (props) => {
                             Iron {"             "}
                           </CheckBox>
                         </View>
-                        <View style={{ paddingLeft: 16, paddingRight: 0 }}>
+                        <View style={{ paddingLeft: 10, paddingRight: 0 }}>
                           <CheckBox
                             value={values?.Magnesium}
                             handleChange={(nextValue) =>

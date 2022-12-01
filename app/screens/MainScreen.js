@@ -24,6 +24,7 @@ import Filter from "../components/Filter.js"
 import { MaterialIcons, Octicons, Foundation} from '@expo/vector-icons'; 
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 import { BiomarkerContext, BiomarkerDispatchContext } from "../components/BiomarkerProvider.js";
+import { BiomarkerInfoContext } from "../components/BiomarkerInfoProvider.js";
 
 export default function MainScreen({ navigation }) {
   let MainScreenJSON = require("../assets/main-screen.json");
@@ -97,11 +98,14 @@ export default function MainScreen({ navigation }) {
   }
 
   const setBiomarker = React.useContext(BiomarkerDispatchContext);
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
 
   function handleGraphView(biomarker) {
     setBiomarker(biomarker);
     navigation.navigate("Graph");
   }
+
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -141,17 +145,31 @@ export default function MainScreen({ navigation }) {
                   <Info>{value.info}</Info>
                 </View>
                 <View style={styles.center}>
-                  <StackedBarChart testData={testData} biomarker={key}/>
-                  <TouchableOpacity
-                    onPress={() => handleGraphView(key)}
-                  >
-                    <View style={{flexDirection: "row", backgroundColor: "#466B7A", padding: 5, borderRadius: 5}}>
+                  <StackedBarChart testData={testData} biomarker={key} />
+                  <View style={{marginTop: 5, marginBottom: 10}}>
+                    <Text style={styles.text_content_range}>
+                      Ideal Range: {biomarkerInfo[key]["range"][0]}{" "}
+                    -{" "}
+                      {biomarkerInfo[key]["range"][1]}{" "}
+                      {biomarkerInfo[key]["units"]}
+                    </Text>
+                  </View>
+                  <TouchableOpacity onPress={() => handleGraphView(key)}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        backgroundColor: "#466B7A",
+                        padding: 5,
+                        borderRadius: 5,
+                      }}
+                    >
                       <Octicons
-                        name="graph" 
-                        size={16} 
-                        color="white" 
-                        style={{ marginRight: 5 }}/>
-                        <Text style={styles.textButtons}>Detailed Graph</Text>
+                        name="graph"
+                        size={16}
+                        color="white"
+                        style={{ marginRight: 5 }}
+                      />
+                      <Text style={styles.textButtons}>Breakdown</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -187,7 +205,7 @@ var Info = (info) => {
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={{ color: "blue" }}>Close</Text>
+                <Text style={{ color: "blue", fontSize: 18 }}>Close</Text>
               </Pressable>
             </View>
           </View>
@@ -204,6 +222,7 @@ var Info = (info) => {
 };
 
 const StackedBarChart = ({testData, biomarker}) => {
+
   compareTests = [];
 
   Object.entries(testData).map(([test, value]) => {
@@ -218,6 +237,9 @@ const StackedBarChart = ({testData, biomarker}) => {
   const previousDataLabel = previousTest["date"]
   const currentDataPoint = currentTest["data"][biomarker];
   const previousDataPoint = previousTest["data"][biomarker];
+
+
+
 
   return (
     <>
@@ -285,6 +307,11 @@ const styles = StyleSheet.create({
   },
   text_content: {
     fontSize: 20,
+    color: "white",
+    fontWeight: "600",
+  },
+  text_content_range: {
+    fontSize: 16,
     color: "white",
     fontWeight: "600",
   },
