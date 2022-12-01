@@ -140,7 +140,8 @@ const App = ({navigation}) => {
               Daily Requirement:
             </Text>
             <Text style={styles.text_content}>
-              Men: 1,000 mg {"\n"}Women: 1,000 mg
+              Men: {biomarkerInfo[biomarker]["requirementsMen"]} {"\n"}
+              Women: {biomarkerInfo[biomarker]["requirementsWomen"]}
             </Text>
           </View>
         </View>
@@ -169,44 +170,9 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>
-              Risks of too little calcium
-            </Text>
-            <Text style={styles.text_content}>
-              If you don't get enough calcium, you could face health problems
-              related to weak bones:{"\n"}
-              {"\n"}Children may not reach their full potential adult
-              height.Adults may have low bone mass, which is a risk factor for
-              osteoporosis.{"\n"}
-              {"\n"}Many Americans don't get enough calcium in their diets.
-              Children and adolescents are at risk, but so are adults age 50 and
-              older.
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.card_element}>
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "flex-start",
-              justifyContent: "space-between",
-              padding: 10,
-            }}
-          >
             <Text style={styles.header_content}>Calcium Diet Suggestions</Text>
             <Text style={styles.text_content}>
-              {"\u2B24"} Dairy products, such as cheese, milk and yogurt{"\n"}
-              {"\n"}
-              {"\u2B24"} Dark green leafy vegetables, such as broccoli and kale
-              {"\n"}
-              {"\n"}
-              {"\u2B24"} Fish with edible soft bones, such as sardines and
-              canned salmon{"\n"}
-              {"\n"}
-              {"\u2B24"} Calcium-fortified foods and beverages, such as soy
-              products, cereal and fruit juices, and milk substitutes{"\n"}
-              {"\n"}
+            {biomarkerInfo[biomarker]["suggestions"]}
             </Text>
           </View>
         </View>
