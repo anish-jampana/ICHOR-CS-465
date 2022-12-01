@@ -170,7 +170,7 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}> Diet Suggestions</Text>
+            <Text style={styles.header_content}>Diet Suggestions:</Text>
             <Text style={styles.text_content}>
             {biomarkerInfo[biomarker]["suggestions"]}
             </Text>
@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#69A3BA',
     borderRadius: 20,
-    marginBottom: 30,
+    marginTop: 30,
     shadowOpacity: 0.5,
     shadowOffset: {height: 1}
   },
