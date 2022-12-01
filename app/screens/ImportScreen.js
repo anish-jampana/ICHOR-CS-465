@@ -218,16 +218,12 @@ var PreviewTestModal = (data) => {
   dataStringified = dataStringified.replace(/['"{}]+/g, '');
   dataStringified = dataStringified.split(",").join("\n");
 
-  console.log(data.children)
   const dataDisplay = [];
   Object.entries(data["children"]).map(([key, value]) => {
     const units = biomarkerInfo[key]["units"];
-    console.log(units)
     dataDisplay.push(key + ": " + value + " " + units)
   })
 
-  console.log(dataDisplay)
-  
   return (
     <View>
       <Modal
