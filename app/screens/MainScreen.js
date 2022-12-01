@@ -158,7 +158,7 @@ export default function MainScreen({ navigation }) {
                     <View
                       style={{
                         flexDirection: "row",
-                        backgroundColor: "#466B7A",
+                        backgroundColor: "#484d52",
                         padding: 5,
                         borderRadius: 5,
                       }}

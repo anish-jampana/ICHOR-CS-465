@@ -30,7 +30,7 @@ export default function App() {
                   headerStyle: {
                     backgroundColor: "#D3D3D3",
                   },
-                  headerTintColor: "#466B7A",
+                  headerTintColor: "#484d52",
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
@@ -45,7 +45,7 @@ export default function App() {
                   headerStyle: {
                     backgroundColor: "#D3D3D3", //used to be blue
                   },
-                  headerTintColor: "#466B7A", //used to be white
+                  headerTintColor: "#484d52", //used to be white
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
@@ -60,7 +60,7 @@ export default function App() {
                   headerStyle: {
                     backgroundColor: "#D3D3D3",
                   },
-                  headerTintColor: "#466B7A",
+                  headerTintColor: "#484d52",
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
@@ -75,7 +75,7 @@ export default function App() {
                   headerStyle: {
                     backgroundColor: "#D3D3D3",
                   },
-                  headerTintColor: "#466B7A",
+                  headerTintColor: "#484d52",
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,

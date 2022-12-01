@@ -128,7 +128,7 @@ const TimeFilter = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <MaterialCommunityIcons name="filter" size={40} color="#466B7A" />
+        <MaterialCommunityIcons name="filter" size={40} color="#484d52" />
       </Pressable>
     </View>
   );
@@ -137,7 +137,7 @@ const TimeFilter = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#466B7A",
+    backgroundColor: "#484d52",
   },
   horizontal: {
     flexDirection: "row",

@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
     elevation: 3,
-    backgroundColor: '#466B7A',
+    backgroundColor: '#484d52',
     marginTop: 25,
     width: width*0.4
   },
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: "40%",
     height: 40,
-    backgroundColor: "#466B7A",
+    backgroundColor: "#484d52",
     shadowColor: "black",
     shadowOffset: {
       width: 0,
