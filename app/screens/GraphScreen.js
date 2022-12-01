@@ -170,7 +170,7 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>Calcium Diet Suggestions</Text>
+            <Text style={styles.header_content}> Diet Suggestions</Text>
             <Text style={styles.text_content}>
             {biomarkerInfo[biomarker]["suggestions"]}
             </Text>
