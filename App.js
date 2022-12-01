@@ -28,7 +28,7 @@ export default function App() {
                 options={{
                   title: "LOG IN",
                   headerStyle: {
-                    backgroundColor: "#bec1c2",
+                    backgroundColor: "#D3D3D3",
                   },
                   headerTintColor: "#466B7A",
                   headerTitleStyle: {
@@ -43,7 +43,7 @@ export default function App() {
                 options={{
                   title: "BIOMARKERS",
                   headerStyle: {
-                    backgroundColor: "#bec1c2", //used to be blue
+                    backgroundColor: "#D3D3D3", //used to be blue
                   },
                   headerTintColor: "#466B7A", //used to be white
                   headerTitleStyle: {
@@ -58,9 +58,9 @@ export default function App() {
                 options={{
                   title: "MY BLOOD TESTS",
                   headerStyle: {
-                    backgroundColor: "#466B7A",
+                    backgroundColor: "#D3D3D3",
                   },
-                  headerTintColor: "#fff",
+                  headerTintColor: "#466B7A",
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
@@ -73,7 +73,7 @@ export default function App() {
                 options={{
                   title: "BREAKDOWN",
                   headerStyle: {
-                    backgroundColor: "#bec1c2",
+                    backgroundColor: "#D3D3D3",
                   },
                   headerTintColor: "#466B7A",
                   headerTitleStyle: {

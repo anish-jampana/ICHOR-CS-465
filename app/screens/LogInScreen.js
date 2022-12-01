@@ -138,7 +138,7 @@ class Register extends React.Component {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#bec1c2'
+    backgroundColor: '#D3D3D3'
   },
   button: {
     alignItems: 'center',
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width * 0.9,
     height: height * 0.875,
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#4895d9",
     borderRadius: 4,
     shadowColor: "black",
     shadowOffset: {
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch',
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#4895d9",
     borderBottomWidth: 1,
     borderColor: "#8898AA"
   },
