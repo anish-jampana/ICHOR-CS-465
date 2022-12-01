@@ -21,7 +21,7 @@ import { BarChart } from "react-native-chart-kit";
 import {XAxis} from "react-native-svg-charts";
 
 import Filter from "../components/Filter.js"
-import { MaterialIcons, Octicons, Foundation} from '@expo/vector-icons'; 
+
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 import { BiomarkerContext, BiomarkerDispatchContext } from "../components/BiomarkerProvider.js";
 
@@ -87,10 +87,16 @@ export default function MainScreen({ navigation }) {
             }
           />
           <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
-            <MaterialIcons name="person" size={40} color="white" />
+            <Image
+              style={styles.tinyLogo}
+              source={require("../assets/white-profile-icon.png")}
+            />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Import")}>
-            <MaterialIcons name="upload-file" size={40} color="white" />
+            <Image
+              style={styles.tinyLogo}
+              source={require("../assets/white-import-icon.png")}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -115,14 +121,10 @@ export default function MainScreen({ navigation }) {
                   <TouchableOpacity
                     onPress={() => handleGraphView(key)}
                   >
-                    <View style={{flexDirection: "row", backgroundColor: "#466B7A", padding: 5, borderRadius: 5}}>
-                      <Octicons
-                        name="graph" 
-                        size={16} 
-                        color="white" 
-                        style={{ marginRight: 5 }}/>
-                        <Text style={styles.textButtons}>Detailed Graph</Text>
-                    </View>
+                    <Image
+                      style={styles.moretinyLogo}
+                      source={require("../assets/graph-icon.png")}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -167,7 +169,10 @@ var Info = (info) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <Foundation name="info" size={29} color="white" />
+        <Image
+          style={styles.moretinyLogo}
+          source={require("../assets/info-icon.png")}
+        />
       </Pressable>
     </View>
   );
@@ -181,6 +186,7 @@ const StackedBarChart = ({testData, biomarker}) => {
       compareTests.push(value);
     }
   });
+  
 
   const [currentTest, previousTest] = compareTests;
 
@@ -188,6 +194,22 @@ const StackedBarChart = ({testData, biomarker}) => {
   const previousDataLabel = previousTest["date"]
   const currentDataPoint = currentTest["data"][biomarker];
   const previousDataPoint = previousTest["data"][biomarker];
+
+  //console.log(compareTests)
+  // console.log(previousDataPoint, currentDataPoint)
+  
+  // console.log("first test", firstTest["data"])
+  // console.log("second test", secondTest["data"])
+
+  // const firstTestData = firstTest.data[biomarker]
+  // const secondTestData = firstTest.data[biomarker]
+
+  // console.log(firstTestData, secondTestData)
+  if (previousDataPoint < 15){colorp = "#fc6203"}
+  else{colorp = "#b3dee2"}
+  if (currentTest < 15){colorc = "#fc6203"}
+  else{colorc = "#b3dee2"}
+
 
   return (
     <>
@@ -201,6 +223,10 @@ const StackedBarChart = ({testData, biomarker}) => {
           datasets: [
             {
               data: [previousDataPoint, currentDataPoint],
+              colors:[
+                (opacity = 1) => colorp,
+                (opacity = 1) => colorc,
+            ]
             },
           ],
         }}
@@ -208,12 +234,14 @@ const StackedBarChart = ({testData, biomarker}) => {
         width={250}
         height={220}
         chartConfig={{
-          backgroundColor: "#1cc910",
-          backgroundGradientFrom: "#eff3ff",
-          backgroundGradientTo: "#efefef",
+          backgroundColor: "#ffffff",
+          backgroundGradientFrom: "#ffffff",
+          backgroundGradientTo: "#ffffff",
           decimalPlaces: 2,
           color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
         }}
+        withCustomBarColorFromData={true}
+        flatColor={true}
       />
     </>
   );
@@ -222,13 +250,13 @@ const StackedBarChart = ({testData, biomarker}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#bec1c2",
+    backgroundColor: "#ffffff",
   },
   horizontal: {
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-evenly",
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#b3dee2",
     paddingVertical: 5,
     borderRadius: 100,
     shadowOpacity: 0.5,
@@ -247,7 +275,7 @@ const styles = StyleSheet.create({
   },
   card_element: {
     padding: 10,
-    backgroundColor: "#69A3BA",
+    backgroundColor: "#b3dee2",
     borderRadius: 20,
     marginBottom: 30,
     shadowOpacity: 0.5,
@@ -259,6 +287,7 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   tinyLogo: {
+    color: "#507dbc",
     width: 38,
     height: 38,
   },
@@ -298,9 +327,4 @@ const styles = StyleSheet.create({
   buttonClose: {
     //backgroundColor: "#2196F3",
   },
-  textButtons: {
-    color: "#fff",
-    fontWeight: "800",
-    fontSize: 14
-  }
 });

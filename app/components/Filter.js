@@ -1,4 +1,3 @@
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 import Checkbox from 'expo-checkbox';
 import { Formik, Field, Form } from "formik";
@@ -146,81 +145,63 @@ var Filter = (props) => {
                       style={{
                         borderColor: "black",
                         borderWidth: 1,
-                        padding: 20,
+                        padding: 10,
                       }}
                     >
-                      <View style={styles.horizontalFilter}>
-                        <View style={{paddingRight: 8}}>
-                          <CheckBox
-                            value={values?.A}
-                            handleChange={(nextValue) =>
-                              setFieldValue("A", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Vitamin A
-                          </CheckBox>
-                        </View>
-                        <View style={{paddingLeft: 8}}>
-                          <CheckBox
-                            value={values?.C}
-                            handleChange={(nextValue) =>
-                              setFieldValue("C", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Vitamin C
-                          </CheckBox>
-                        </View>
-                      </View>
-                      <View style={styles.horizontalFilter}>
-                        <View style={{paddingRight: 8}}>
-                          <CheckBox
-                            value={values?.D}
-                            handleChange={(nextValue) =>
-                              setFieldValue("D", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Vitamin D
-                          </CheckBox>
-                        </View>
-                        <View style={{paddingLeft: 8}}>
-                          <CheckBox
-                            value={values?.E}
-                            handleChange={(nextValue) =>
-                              setFieldValue("E", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Vitamin E
-                          </CheckBox>
-                        </View>
-                      </View>
-                      <View style={styles.horizontalFilter}>
-                        <View style={{paddingRight: 8}}>
-                          <CheckBox
-                            value={values?.K}
-                            handleChange={(nextValue) =>
-                              setFieldValue("K", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Vitamin K
-                          </CheckBox>
-                        </View>
-                        <View style={{paddingLeft: 9, paddingRight: 8}}>
-                          <CheckBox
-                            value={values?.Calcium}
-                            handleChange={(nextValue) =>
-                              setFieldValue("Calcium", nextValue)
-                            }
-                            lockFilter={lockFilter}
-                          >
-                            Calcium
-                          </CheckBox>
-                        </View>
-                      </View>
+                      <CheckBox
+                        value={values?.A}
+                        handleChange={(nextValue) =>
+                          setFieldValue("A", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Vitamin A
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.C}
+                        handleChange={(nextValue) =>
+                          setFieldValue("C", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Vitamin C
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.D}
+                        handleChange={(nextValue) =>
+                          setFieldValue("D", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Vitamin D
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.E}
+                        handleChange={(nextValue) =>
+                          setFieldValue("E", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Vitamin E
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.K}
+                        handleChange={(nextValue) =>
+                          setFieldValue("K", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Vitamin K
+                      </CheckBox>
+                      <CheckBox
+                        value={values?.Calcium}
+                        handleChange={(nextValue) =>
+                          setFieldValue("Calcium", nextValue)
+                        }
+                        lockFilter={lockFilter}
+                      >
+                        Calcium
+                      </CheckBox>
                       <CheckBoxLock
                         value={values?.showAll}
                         handleChange={(nextValue) => {
@@ -258,7 +239,10 @@ var Filter = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <MaterialCommunityIcons name="filter" size={40} color="white" />
+        <Image
+          style={styles.tinyLogo}
+          source={require("../assets/white-filter-icon.png")}
+        />
       </Pressable>
     </View>
   );
@@ -335,11 +319,6 @@ const styles = StyleSheet.create({
   button: {
     // borderRadius: 10,
     // elevation: 2
-  },
-  horizontalFilter: {
-    flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-evenly"
   },
   buttonClose: {
     //backgroundColor: "#2196F3",
