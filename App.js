@@ -26,7 +26,7 @@ export default function App() {
                 name="LogIn"
                 component={LogInScreen}
                 options={{
-                  title: "LOG IN",
+                  title: "ICHOR",
                   headerStyle: {
                     backgroundColor: "#D3D3D3",
                   },
@@ -34,6 +34,7 @@ export default function App() {
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
+                    fontWeight: "bold"
                   },
                 }}
               />
