@@ -14,6 +14,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import styled from "styled-components";
 import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
 import {BiomarkerInfoContext, BiomarkerInfoDispatchContext} from "../components/BiomarkerInfoProvider.js"
+import {ImportVisitedDispatchContext} from "../components/ImportVisitedContext.js"
 
 function Header(props) {
   return (
@@ -30,12 +31,16 @@ const Import = ({navigation}) => {
 
   const testData = React.useContext(TestDataContext);
   const setTestData = React.useContext(TestDataDispatchContext);
+  // const importVisited = React.useContext(ImportVisitedContext)
+  const setImportVisited = React.useContext(ImportVisitedDispatchContext);
   const [mostRecent, setMostRecent] = useState(false);
 
   function handleRemoveTest(test) {
     let testDataCopy = Object.assign({}, testData, {});
     testDataCopy[test]["display"] = false;
     setTestData(testDataCopy);
+    console.log("remove")
+    setImportVisited(true);
   }
 
   function handleAddTest() {
@@ -43,6 +48,7 @@ const Import = ({navigation}) => {
     testDataCopy["test_recent"]["display"] = true;
     setTestData(testDataCopy);
     setMostRecent(true);
+    setImportVisited(true);
   }
 
   return (
@@ -238,11 +244,11 @@ var PreviewTestModal = (data) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={[styles.modalText, styles.bloodTestModalPadding]}>
+            <Text style={[styles.headerText, styles.bloodTestModalPadding]}>
               Blood Test Preview
             </Text>
             {dataDisplay.map((value) => 
-              <Text style={styles.modalText}>{value}</Text>
+              <Text id={value} style={styles.modalText}>{value}</Text>
             )}
             <View style={{ alignItems: "center" }}>
               <Pressable
@@ -344,6 +350,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     justifyContent: "center"
   },
+  headerText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 18,
+    justifyContent: "center",
+    fontWeight: "bold"
+  },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -387,7 +400,7 @@ const PressableAddTest = styled(Pressable)`
 `;
 
 const ImportListScrollView = styled.ScrollView`
-  height: 70%;
+  height: 80%;
   border-width: 1px;
   border-top-color: #484d52;
   border-top-width: 1px;

@@ -1,10 +1,13 @@
-import Slider from '@react-native-community/slider';
-import Checkbox from 'expo-checkbox';
+import Slider from "@react-native-community/slider";
+import Checkbox from "expo-checkbox";
 import { Formik, Field, Form } from "formik";
-import { RadioButton } from 'react-native-paper';
-import React, { useState, useEffect, useContext} from "react";
-import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
-import { MaterialCommunityIcons} from '@expo/vector-icons';
+import { RadioButton } from "react-native-paper";
+import React, { useState, useEffect, useContext } from "react";
+import {
+  TestDataContext,
+  TestDataDispatchContext,
+} from "../components/TestDataProvider.js";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Button,
   Text,
@@ -21,21 +24,20 @@ import {
   Dimensions,
 } from "react-native";
 
-
 const MyComponent = () => {
-  const [checked, setChecked] = React.useState('first');
+  const [checked, setChecked] = React.useState("first");
 
   return (
     <View>
       <RadioButton
         value="first"
-        status={ checked === 'first' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('first')}
+        status={checked === "first" ? "checked" : "unchecked"}
+        onPress={() => setChecked("first")}
       />
       <RadioButton
         value="second"
-        status={ checked === 'second' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('second')}
+        status={checked === "second" ? "checked" : "unchecked"}
+        onPress={() => setChecked("second")}
       />
     </View>
   );
@@ -46,7 +48,6 @@ const TimeFilter = (props) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
   const [lockFilter, setLockFilter] = useState(false);
-
 
   function handleApply(numberTests) {
     setModalVisible(false);
@@ -92,23 +93,33 @@ const TimeFilter = (props) => {
                 paddingVertical: 10,
               }}
             >
-              <Slider
-                style={{ width: 200, height: 40 }}
-                minimumValue={2}
-                maximumValue={numberTests}
-                step={1}
-                value={sliderValue}
-                onValueChange={(sliderValue) => setSliderValue(sliderValue)}
-                minimumTrackTintColor="#000000"
-                maximumTrackTintColor="#000000"
-              />
-              <Text style={{ color: "#000000" }}>
-                Display # of recent tests:
-              </Text>
-              <Text>
-              {sliderValue}
-              </Text>
-              <Text style={{ color: "#000000" }}>xx/xx/xxxx - xx/xx/xxxx </Text>
+              <View
+                style={{
+                  borderColor: "black",
+                  borderWidth: 1,
+                  padding: 20,
+                  borderRadius: 10,
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Slider
+                  style={{ width: 200, height: 40 }}
+                  minimumValue={2}
+                  maximumValue={numberTests}
+                  step={1}
+                  value={sliderValue}
+                  onValueChange={(sliderValue) => setSliderValue(sliderValue)}
+                  minimumTrackTintColor="#000000"
+                  maximumTrackTintColor="#000000"
+                />
+                <Text style={{ color: "#000000" }}>
+                  Display how many tests? <Text style={{ color: "#000000", fontWeight: "bold" }}>{sliderValue}</Text>
+                </Text>
+                <Text style={{ color: "#000000" }}>
+                </Text>
+              </View>
             </View>
             <View
               style={{
@@ -119,7 +130,10 @@ const TimeFilter = (props) => {
               }}
             >
               <Button onPress={() => handleApply()} title="Apply"></Button>
-              <Button onPress={() => setModalVisible(false)} title="Cancel"></Button>
+              <Button
+                onPress={() => setModalVisible(false)}
+                title="Cancel"
+              ></Button>
             </View>
           </View>
         </View>
