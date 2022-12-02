@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   header: {
-    color: '#466B7A',
+    color: '#484d52',
     textAlign: "center",
     fontSize: 20,
     fontWeight: '600',

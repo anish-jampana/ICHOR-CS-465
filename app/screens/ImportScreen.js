@@ -139,7 +139,7 @@ const RemoveTestWarningModal = (props) => {
         </View>
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
-        <MaterialIcons name="delete" size={28} color="#466B7A" />
+        <MaterialIcons name="delete" size={28} color="#484d52" />
       </IconContainer>
     </View>
   );
@@ -204,7 +204,7 @@ const AddTestModal = (props) => {
         </View>
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
-        <MaterialIcons name="add-circle-outline" size={32} color="#466B7A" />
+        <MaterialIcons name="add-circle-outline" size={32} color="#484d52" />
       </IconContainer>
     </View>
   );
@@ -257,7 +257,7 @@ var PreviewTestModal = (data) => {
       </Modal>
       <IconContainer onPress={() => setModalVisible(true)}>
         <CircleContainer>
-          <MaterialIcons name="description" size={32} color="#466B7A" />
+          <MaterialIcons name="description" size={32} color="#484d52" />
         </CircleContainer>
       </IconContainer>
     </View>
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: "#466B7A",
+    backgroundColor: "#484d52",
   },
   textStyle: {
     color: "white",
@@ -389,9 +389,9 @@ const PressableAddTest = styled(Pressable)`
 const ImportListScrollView = styled.ScrollView`
   height: 70%;
   border-width: 1px;
-  border-top-color: #466B7A;
+  border-top-color: #484d52;
   border-top-width: 1px;
-  border-bottom-color: #466B7A;
+  border-bottom-color: #484d52;
   border-bottom-width: 1px;
   margin-bottom: 40px;
 `;
@@ -401,7 +401,7 @@ const ListContainer = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  border-bottom-color: #466B7A;
+  border-bottom-color: #484d52;
   border-bottom-width: 1px;
 `;
 
@@ -422,7 +422,7 @@ const AddTestModalContainer = styled.View`
 `;
 
 const TextItem = styled.Text`
-  color: #466B7A;
+  color: #484d52;
   width: 240px;
   height: auto;
   font-size: 20px;
@@ -444,7 +444,7 @@ const CircleContainer = styled.View`
   margin-top: 10px;
   margin-left: 10px;
   border-radius: 20px;
-  border-color: #466B7A;
+  border-color: #484d52;
   border-width: 1px;
 `;
 
