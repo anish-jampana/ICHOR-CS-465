@@ -36,7 +36,7 @@
     "Magnesium":{
         "key": "4",
         "name": "Magnesium",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
+        "info": "Magnesium is a mineral that helps muscles, nerves, the immune system, and the heart work as they should. It also helps make protein and energy, and helps keep bones strong.",
         "display": true,
         "range": [1.7, 2.2],
         "units": "mg/dL",
@@ -47,7 +47,7 @@
     "Phosphorus":{
         "key": "5",
         "name": "Phosphorus",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
+        "info": "Phosphorus is a mineral that helps in the formation of bones and teeth. It also helps make protein and energy, and helps keep muscles and nerves working the way they should.",
         "display": true,
         "range": [2.8, 4.5],
         "units": "mg/dL",
@@ -69,7 +69,7 @@
     "Sodium":{
         "key": "7",
         "name": "Sodium",
-        "info": "This vitamin plays a really big part in eyesight. It's great for night vision, like when you're trick-or-treating on Halloween. Vitamin A helps you see in color, too, from the brightest yellow to the darkest purple. In addition, it helps your body fight infections by boosting your immune system.",
+        "info": "A mineral needed by the body to keep body fluids in balance. Sodium is found in table salt and in many processed foods. Too much sodium can cause the body to retain water.",
         "display": true,
         "range": [135, 145],
         "units": "mEq/L",
