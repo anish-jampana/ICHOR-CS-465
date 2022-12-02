@@ -35,6 +35,7 @@ const CheckBoxLock = ({ children, value, handleChange }) => {
           value={value}
           onValueChange={handleChange}
           //   {...props}
+          style={{ width: 26, height: 26 }}
         />
         <Text> </Text>
         <Text>{children}</Text>
@@ -64,6 +65,7 @@ const CheckBox = ({ children, value, handleChange, lockFilter}) => {
             // value={value}
             onValueChange={handleChange}
             //   {...props}
+            style={{ width: 26, height: 26 }}
           />
         ) : (
           <Checkbox
@@ -71,6 +73,7 @@ const CheckBox = ({ children, value, handleChange, lockFilter}) => {
             value={value}
             onValueChange={handleChange}
             //   {...props}
+            style={{ width: 26, height: 26 }}
           />
         )}
         <Text> </Text>
@@ -124,7 +127,14 @@ var Filter = (props) => {
                   K: false,
                   Calcium: false,
                   Choline: false,
+                  Iron: false,
+                  Magnesium: false,
+                  Phosphorus: false,
+                  Potassium: false,
+                  Sodium: false,
+                  Zinc: false,
                   showAll: false,
+                  sortPriority: false,
                 }}
                 onSubmit={(values, { resetForm }) => {
                   Object.entries(values).map(([key, value]) => {
@@ -206,14 +216,34 @@ var Filter = (props) => {
                         value={values?.showAll}
                         handleChange={(nextValue) => {
                           setFieldValue("showAll", nextValue);
-                          setLockFilter(!lockFilter)
+                          setLockFilter(!lockFilter);
                         }}
                         lockFilter={lockFilter}
                       >
                         Show All Biomarkers
                       </CheckBoxLock>
                     </View>
-                    <CheckBox>Sort by Abnormal Levels</CheckBox>
+                    <View
+                      style={{
+                        borderColor: "black",
+                        borderWidth: 1,
+                        padding: 20,
+                        borderRadius: 10,
+                        marginTop: 10,
+                      }}
+                    >
+                      <View style={{ alignItems: "center" }}>
+                        <Text style={styles.modalHeader}>SORT</Text>
+                        <CheckBox
+                          value={values?.sortPriority}
+                          handleChange={(nextValue) =>
+                            setFieldValue("sortPriority", nextValue)
+                          }
+                        >
+                          Sort by Abnormal Levels
+                        </CheckBox>
+                      </View>
+                    </View>
                     <View
                       style={{
                         flexDirection: "row",
@@ -297,7 +327,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     marginHorizontal: 20,
-    marginVertical: 200,
+    marginVertical: 175,
     backgroundColor: "white",
     borderRadius: 20,
     padding: 20,
@@ -313,6 +343,11 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontSize: 15,
+    fontWeight: "600",
+    marginBottom: 10,
+  },
+  modalHeader: {
+    fontSize: 13,
     fontWeight: "600",
     marginBottom: 10,
   },

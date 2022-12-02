@@ -38,9 +38,14 @@ const BiomarkerLineChart = (props) => {
     }
   });
 
-  const biomarkerInfo = React.useContext(BiomarkerInfoContext)
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
   const biomarkerName = biomarkerInfo[biomarker]["name"]
   const c = loadedData.reverse()
+  const biomarkerUnits =  biomarkerInfo[biomarker]["units"]
+  const range1 = biomarkerInfo[biomarker]["range"]
+
+  const lower = range1[0];
+  const higher = range1[1];
 
   //TODO: Get units from biomarkerInfo, 
   //display healthy range at top of graph with units,
@@ -48,7 +53,7 @@ const BiomarkerLineChart = (props) => {
 
   return (
     <>
-      <Text style={styles.header}>{biomarkerName} (mcg/dL)</Text>
+      <Text style={styles.header}>{biomarkerName} ({biomarkerUnits})</Text>
       <LineChart
         data={{
           labels: props.labels.reverse(),
@@ -60,9 +65,9 @@ const BiomarkerLineChart = (props) => {
           ],
         }}
         getDotColor={(c) => {
-          if(c< 20) 
-          return '#ff0000';// red
-          else  return '#00ff00';// green
+          if(lower < c && c < higher) 
+          return "#63e9f2";
+          else  return '#ff0000';// orange
         }}
         width={Dimensions.get("window").width - 16}
         height={220}
@@ -91,6 +96,7 @@ const BiomarkerLineChart = (props) => {
 
 const App = ({navigation}) => {
   const biomarker = React.useContext(BiomarkerContext);
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
 
   const testData = React.useContext(TestDataContext);
   let defaultNumberTests = 0
@@ -150,7 +156,7 @@ const App = ({navigation}) => {
             }}
           >
             <Text style={styles.header_content}>
-              Calcium daily requirements
+              Daily Requirement:
             </Text>
             <Text style={styles.text_content}>
               Men: 1,000 mg {"\n"}Women: 1,000 mg
@@ -166,15 +172,10 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>Benefits of calcium</Text>
+            <Text style={styles.header_content}>Importance to Your Health:</Text>
             <Text style={styles.text_content}>
-              Your body needs calcium to build and maintain strong bones. Your
-              heart, muscles and nerves also need calcium to function properly.
-              {"\n"}
-              {"\n"}Some studies suggest that calcium, along with vitamin D, may
-              have benefits beyond bone health: perhaps protecting against
-              cancer, diabetes and high blood pressure. But evidence about such
-              health benefits is not definitive.{" "}
+              {biomarkerInfo[biomarker]["info"]}
+
             </Text>
           </View>
         </View>
@@ -280,6 +281,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white',
     fontWeight: '600',
+    marginBottom: 4
   },
   text_content:{
     fontSize: 16,
