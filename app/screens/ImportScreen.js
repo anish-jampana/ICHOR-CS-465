@@ -238,7 +238,7 @@ var PreviewTestModal = (data) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={[styles.modalText, styles.bloodTestModalPadding]}>
+            <Text style={[styles.headerText, styles.bloodTestModalPadding]}>
               Blood Test Preview
             </Text>
             {dataDisplay.map((value) => 
@@ -344,6 +344,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     justifyContent: "center"
   },
+  headerText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontSize: 18,
+    justifyContent: "center",
+    fontWeight: "bold"
+  },
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -387,7 +394,7 @@ const PressableAddTest = styled(Pressable)`
 `;
 
 const ImportListScrollView = styled.ScrollView`
-  height: 70%;
+  height: 80%;
   border-width: 1px;
   border-top-color: #484d52;
   border-top-width: 1px;

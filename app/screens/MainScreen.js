@@ -32,19 +32,24 @@ export default function MainScreen({ navigation }) {
   const data = JSON.parse(stringData);
   const [biomarkers, setBiomarkers] = useState(data);
   const [displayBiomarkers, setDisplayBiomarkers] = useState({...biomarkers});
+  // const [alert, setAlert] = useState(false)
+  const setBiomarker = React.useContext(BiomarkerDispatchContext);
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
 
   const testData = React.useContext(TestDataContext);
 
   function handleChangeBiomarkers(biomarker) {
+
     let biomarkersCopy = biomarkers;
     let objects = Object.entries(biomarker);
-    let sortPriority = false;
 
-    if (
+    let alert = false;
+
+    if ( 
       objects[objects.length-1][0] == "sortPriority" &&
       objects[objects.length-1][1] == true
     ) {
-      sortPriority = true;
+      alert = true;
     }
 
     //remove sortPriority from object entries
@@ -55,15 +60,18 @@ export default function MainScreen({ navigation }) {
       objects[objects.length - 1][0] == "showAll" &&
       objects[objects.length - 1][1] == true
     ) {
-      Object.entries(biomarkersCopy).map(
-        ([key, value]) => (biomarkersCopy[key]["display"] = true)
-      );
+      Object.entries(biomarkersCopy).map(([key, value]) => {
+        biomarkersCopy[key]["display"] = true;
+        biomarkersCopy[key]["alert"] = false;
+      });
       setBiomarkers({ ...biomarkersCopy });
-      return;
+      
     } else {
       Object.entries(biomarkersCopy).map(([key, value]) => {
         if (key != "showAll") {
+          console.log("test")
           biomarkersCopy[key]["display"] = false;
+          biomarkersCopy[key]["alert"] = false;
         }
       });
 
@@ -72,33 +80,35 @@ export default function MainScreen({ navigation }) {
           biomarkersCopy[key]["display"] = value;
         }
       });
-
-      setBiomarkers({ ...biomarkersCopy });
+    
     }
+      compareTests = [];
 
-    if (sortPriority) {
-      const display = {"Calcium" : biomarkers["Calcium"]}
-
-      Object.entries(display).map(([key, value]) => {
-        console.log(key, value)
-        if (biomarkers[key]["display"]) {
-          display[key]["display"] = true;
+      Object.entries(testData).map(([test, value]) => {
+        if (value["display"]) {
+          compareTests.push(value);
         }
       });
-
-      setDisplayBiomarkers(display);
     
-    } else {
-      setDisplayBiomarkers({ ...biomarkers });
-    }
+      console.log(alert)
 
+      if (alert) {
+      const [currentTest] = compareTests;
+        Object.entries(currentTest["data"]).map(([biomarker, value]) => {
+          const range = biomarkerInfo[biomarker]["range"];
+          // console.log(biomarker, range)
+          if (value < range[0] || value > range[1]) {
+            console.log(value, range[0], range[1]);
+            biomarkersCopy[biomarker]["alert"] = true;
+            console.log(biomarkersCopy[biomarker]);
+          }
+        });
+      }
 
-
-
+      setBiomarkers({ ...biomarkersCopy });
+    
   }
 
-  const setBiomarker = React.useContext(BiomarkerDispatchContext);
-  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
 
   function handleGraphView(biomarker) {
     setBiomarker(biomarker);
@@ -131,7 +141,55 @@ export default function MainScreen({ navigation }) {
       <ScrollView style={styles.scroll_view}>
         {Object.entries(displayBiomarkers).map(([key, value]) => {
           return (
-            value["display"] && (
+            value["display"] && value["alert"] && (
+              <View style={styles.card_element} key={key}>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "flex-end",
+                    justifyContent: "space-between",
+                    padding: 10,
+                  }}
+                >
+                  <Text style={styles.text_content}>{value.name}</Text>
+                  <Info>{value.info}</Info>
+                </View>
+                <View style={styles.center}>
+                  <StackedBarChart testData={testData} biomarker={key} />
+                  <View style={{marginTop: 5, marginBottom: 10}}>
+                    <Text style={styles.text_content_range}>
+                      Ideal Range: {biomarkerInfo[key]["range"][0]}{" "}
+                    -{" "}
+                      {biomarkerInfo[key]["range"][1]}{" "}
+                      {biomarkerInfo[key]["units"]}
+                    </Text>
+                  </View>
+                  <TouchableOpacity onPress={() => handleGraphView(key)}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        backgroundColor: "#484d52",
+                        padding: 5,
+                        borderRadius: 5,
+                      }}
+                    >
+                      <Octicons
+                        name="graph"
+                        size={16}
+                        color="white"
+                        style={{ marginRight: 5 }}
+                      />
+                      <Text style={styles.textButtons}>Breakdown</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )
+          );
+        })}
+        {Object.entries(displayBiomarkers).map(([key, value]) => {
+          return (
+            value["display"] && !value["alert"] && (
               <View style={styles.card_element} key={key}>
                 <View
                   style={{

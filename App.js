@@ -45,8 +45,26 @@ export default function App() {
                   title: "Biomarkers",
                   headerStyle: {
                     backgroundColor: "#D3D3D3", //used to be blue
+                    borderWidth: 1
                   },
                   headerTintColor: "#484d52", //used to be white
+                  headerTitleStyle: {
+                    fontWeight: "600",
+                    fontSize: 25,
+                    fontWeight: "bold",
+                    
+                  },
+                }}
+              />
+              <Stack.Screen
+                name="Import"
+                component={ImportScreen}
+                options={{
+                  title: "My Blood Tests",
+                  headerStyle: {
+                    backgroundColor: "#D3D3D3",
+                  },
+                  headerTintColor: "#484d52",
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
@@ -55,25 +73,10 @@ export default function App() {
                 }}
               />
               <Stack.Screen
-                name="Import"
-                component={ImportScreen}
-                options={{
-                  title: "MY BLOOD TESTS",
-                  headerStyle: {
-                    backgroundColor: "#D3D3D3",
-                  },
-                  headerTintColor: "#484d52",
-                  headerTitleStyle: {
-                    fontWeight: "600",
-                    fontSize: 25,
-                  },
-                }}
-              />
-              <Stack.Screen
                 name="Graph"
                 component={GraphScreen}
                 options={{
-                  title: "BREAKDOWN",
+                  title: "Breakdown",
                   headerStyle: {
                     backgroundColor: "#D3D3D3",
                   },
@@ -81,6 +84,7 @@ export default function App() {
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
+                    fontWeight: "bold"
                   },
                 }}
               />

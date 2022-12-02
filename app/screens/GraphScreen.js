@@ -70,6 +70,7 @@ const BiomarkerLineChart = (props) => {
           backgroundGradientTo: "#efefef",
           decimalPlaces: 2,
           color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
+          
         }}
         withCustomBarColorFromData={true}
         flatColor={true}
