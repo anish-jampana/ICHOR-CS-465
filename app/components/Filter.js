@@ -139,7 +139,11 @@ var Filter = (props) => {
                 }}
                 onSubmit={(values, { resetForm }) => {
                   Object.entries(values).map(([key, value]) => {
+                    if (key == "sortPriority") {
+                      return;
+                    }
                     if (value) {
+                      
                       props.handleChangeBiomarkers(values);
                       setModalVisible(!modalVisible);
                       return;

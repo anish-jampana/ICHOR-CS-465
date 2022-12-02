@@ -1,5 +1,5 @@
 import { Formik, Field, Form } from "formik";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Text,
@@ -18,43 +18,91 @@ import {
 
 import { BarChart } from "react-native-chart-kit";
 
-import {XAxis} from "react-native-svg-charts";
+import { XAxis } from "react-native-svg-charts";
 
-import Filter from "../components/Filter.js"
-import { MaterialIcons, Octicons, Foundation} from '@expo/vector-icons'; 
-import {TestDataContext, TestDataDispatchContext} from "../components/TestDataProvider.js";
-import { BiomarkerContext, BiomarkerDispatchContext } from "../components/BiomarkerProvider.js";
+import Filter from "../components/Filter.js";
+import { MaterialIcons, Octicons, Foundation } from "@expo/vector-icons";
+import {
+  TestDataContext,
+  TestDataDispatchContext,
+} from "../components/TestDataProvider.js";
+import {
+  BiomarkerContext,
+  BiomarkerDispatchContext,
+} from "../components/BiomarkerProvider.js";
 import { BiomarkerInfoContext } from "../components/BiomarkerInfoProvider.js";
+import {
+  ImportVisitedContext,
+  ImportVisitedDispatchContext,
+} from "../components/ImportVisitedContext.js";
 
 export default function MainScreen({ navigation }) {
   let MainScreenJSON = require("../assets/main-screen.json");
   let stringData = JSON.stringify(MainScreenJSON);
   const data = JSON.parse(stringData);
   const [biomarkers, setBiomarkers] = useState(data);
-  const [displayBiomarkers, setDisplayBiomarkers] = useState({...biomarkers});
+  const [displayBiomarkers, setDisplayBiomarkers] = useState({ ...biomarkers });
   // const [alert, setAlert] = useState(false)
   const setBiomarker = React.useContext(BiomarkerDispatchContext);
   const biomarkerInfo = React.useContext(BiomarkerInfoContext);
+  const initializeTestData = React.useContext(TestDataContext);
+  const [testData, setTestData] = useState(initializeTestData);
 
-  const testData = React.useContext(TestDataContext);
+  const importVisited = React.useContext(ImportVisitedContext);
+  const setImportVisited = React.useContext(ImportVisitedDispatchContext);
+
+  let biomarkersCopy = biomarkers;
+
+  if (importVisited) {
+    setImportVisited(false);
+    let biomarkersCopy = biomarkers;
+
+    Object.entries(biomarkersCopy).map(([key, value]) => {
+      biomarkersCopy[key]["display"] = true;
+      biomarkersCopy[key]["alert"] = false;
+    });
+  }
+
+  Object.entries(biomarkersCopy).map(([key, value]) => {
+    biomarkersCopy[key]["warning"] = false;
+  });
+
+  compareTests = [];
+
+  Object.entries(testData).map(([test, value]) => {
+    if (value["display"]) {
+      compareTests.push(value);
+    }
+  });
+
+  // console.log(alert)
+
+  const [currentTest] = compareTests;
+  Object.entries(currentTest["data"]).map(([biomarker, value]) => {
+    const range = biomarkerInfo[biomarker]["range"];
+    // console.log(biomarker, range)
+    if (value < range[0] || value > range[1]) {
+      // console.log(value, range[0], range[1]);
+      biomarkersCopy[biomarker]["warning"] = true;
+      // console.log(biomarkersCopy[biomarker]);
+    }
+  });
 
   function handleChangeBiomarkers(biomarker) {
-
-    let biomarkersCopy = biomarkers;
+    // let biomarkersCopy = biomarkers;
     let objects = Object.entries(biomarker);
 
     let alert = false;
 
-    if ( 
-      objects[objects.length-1][0] == "sortPriority" &&
-      objects[objects.length-1][1] == true
+    if (
+      objects[objects.length - 1][0] == "sortPriority" &&
+      objects[objects.length - 1][1] == true
     ) {
       alert = true;
     }
 
     //remove sortPriority from object entries
-    objects.pop()
-
+    objects.pop();
 
     if (
       objects[objects.length - 1][0] == "showAll" &&
@@ -65,11 +113,9 @@ export default function MainScreen({ navigation }) {
         biomarkersCopy[key]["alert"] = false;
       });
       setBiomarkers({ ...biomarkersCopy });
-      
     } else {
       Object.entries(biomarkersCopy).map(([key, value]) => {
         if (key != "showAll") {
-          console.log("test")
           biomarkersCopy[key]["display"] = false;
           biomarkersCopy[key]["alert"] = false;
         }
@@ -80,42 +126,37 @@ export default function MainScreen({ navigation }) {
           biomarkersCopy[key]["display"] = value;
         }
       });
-    
     }
-      compareTests = [];
+    compareTests = [];
 
-      Object.entries(testData).map(([test, value]) => {
-        if (value["display"]) {
-          compareTests.push(value);
+    Object.entries(testData).map(([test, value]) => {
+      if (value["display"]) {
+        compareTests.push(value);
+      }
+    });
+
+    // console.log(alert)
+
+    if (alert) {
+      const [currentTest] = compareTests;
+      Object.entries(currentTest["data"]).map(([biomarker, value]) => {
+        const range = biomarkerInfo[biomarker]["range"];
+        // console.log(biomarker, range)
+        if (value < range[0] || value > range[1]) {
+          // console.log(value, range[0], range[1]);
+          biomarkersCopy[biomarker]["alert"] = true;
+          // console.log(biomarkersCopy[biomarker]);
         }
       });
-    
-      console.log(alert)
+    }
 
-      if (alert) {
-      const [currentTest] = compareTests;
-        Object.entries(currentTest["data"]).map(([biomarker, value]) => {
-          const range = biomarkerInfo[biomarker]["range"];
-          // console.log(biomarker, range)
-          if (value < range[0] || value > range[1]) {
-            console.log(value, range[0], range[1]);
-            biomarkersCopy[biomarker]["alert"] = true;
-            console.log(biomarkersCopy[biomarker]);
-          }
-        });
-      }
-
-      setBiomarkers({ ...biomarkersCopy });
-    
+    setBiomarkers({ ...biomarkersCopy });
   }
-
 
   function handleGraphView(biomarker) {
     setBiomarker(biomarker);
     navigation.navigate("Graph");
   }
-
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -126,9 +167,7 @@ export default function MainScreen({ navigation }) {
             handleChangeBiomarkers={(biomarker) =>
               handleChangeBiomarkers(biomarker)
             }
-            defaultAllBiomarkers={() =>
-              defaultAllBiomarkers()
-            }
+            defaultAllBiomarkers={() => defaultAllBiomarkers()}
           />
           <TouchableOpacity onPress={() => navigation.navigate("LogIn")}>
             <MaterialIcons name="person" size={40} color="white" />
@@ -139,9 +178,10 @@ export default function MainScreen({ navigation }) {
         </View>
       </View>
       <ScrollView style={styles.scroll_view}>
-        {Object.entries(displayBiomarkers).map(([key, value]) => {
+        {Object.entries(biomarkers).map(([key, value]) => {
           return (
-            value["display"] && value["alert"] && (
+            value["display"] &&
+            value["alert"] && (
               <View style={styles.card_element} key={key}>
                 <View
                   style={{
@@ -156,13 +196,31 @@ export default function MainScreen({ navigation }) {
                 </View>
                 <View style={styles.center}>
                   <StackedBarChart testData={testData} biomarker={key} />
-                  <View style={{marginTop: 5, marginBottom: 10}}>
+                  <View style={{ marginTop: 5, marginBottom: 10 }}>
                     <Text style={styles.text_content_range}>
-                      Ideal Range: {biomarkerInfo[key]["range"][0]}{" "}
-                    -{" "}
+                      Ideal range: {biomarkerInfo[key]["range"][0]} -{" "}
                       {biomarkerInfo[key]["range"][1]}{" "}
                       {biomarkerInfo[key]["units"]}
                     </Text>
+                    {value["warning"] && (
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "flex-end",
+                          // justifyContent: "space-between",
+                        }}
+                      >
+                        <MaterialIcons
+                          name="error-outline"
+                          size={20}
+                          color="orange"
+                        />
+                        <Text style={styles.text_content_range}>
+                          {" "}
+                          Recent test out of range
+                        </Text>
+                      </View>
+                    )}
                   </View>
                   <TouchableOpacity onPress={() => handleGraphView(key)}>
                     <View
@@ -189,7 +247,8 @@ export default function MainScreen({ navigation }) {
         })}
         {Object.entries(displayBiomarkers).map(([key, value]) => {
           return (
-            value["display"] && !value["alert"] && (
+            value["display"] &&
+            !value["alert"] && (
               <View style={styles.card_element} key={key}>
                 <View
                   style={{
@@ -204,13 +263,31 @@ export default function MainScreen({ navigation }) {
                 </View>
                 <View style={styles.center}>
                   <StackedBarChart testData={testData} biomarker={key} />
-                  <View style={{marginTop: 5, marginBottom: 10}}>
+                  <View style={{ marginTop: 5, marginBottom: 10 }}>
                     <Text style={styles.text_content_range}>
-                      Ideal Range: {biomarkerInfo[key]["range"][0]}{" "}
-                    -{" "}
+                      Ideal Range: {biomarkerInfo[key]["range"][0]} -{" "}
                       {biomarkerInfo[key]["range"][1]}{" "}
                       {biomarkerInfo[key]["units"]}
                     </Text>
+                    {value["warning"] && (
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "flex-end",
+                          // justifyContent: "space-between",
+                        }}
+                      >
+                        <MaterialIcons
+                          name="error-outline"
+                          size={20}
+                          color="orange"
+                        />
+                        <Text style={styles.text_content_range}>
+                          {" "}
+                          Recent test out of range
+                        </Text>
+                      </View>
+                    )}
                   </View>
                   <TouchableOpacity onPress={() => handleGraphView(key)}>
                     <View
@@ -239,8 +316,6 @@ export default function MainScreen({ navigation }) {
     </SafeAreaView>
   );
 }
-
-
 
 var Info = (info) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -279,8 +354,7 @@ var Info = (info) => {
   );
 };
 
-const StackedBarChart = ({testData, biomarker}) => {
-
+const StackedBarChart = ({ testData, biomarker }) => {
   compareTests = [];
 
   Object.entries(testData).map(([test, value]) => {
@@ -291,23 +365,26 @@ const StackedBarChart = ({testData, biomarker}) => {
 
   const [currentTest, previousTest] = compareTests;
 
-  const currentDataLabel  = currentTest["date"]
-  const previousDataLabel = previousTest["date"]
+  const currentDataLabel = currentTest["date"];
+  const previousDataLabel = previousTest["date"];
   const currentDataPoint = currentTest["data"][biomarker];
   const previousDataPoint = previousTest["data"][biomarker];
   const biomarkerInfo = React.useContext(BiomarkerInfoContext);
-  const range1 = biomarkerInfo[biomarker]["range"]
+  const range1 = biomarkerInfo[biomarker]["range"];
 
   const lower = range1[0];
   const higher = range1[1];
 
-  if (lower < previousDataPoint && previousDataPoint < higher){colorp = "#b3dee2"}
-  else{colorp = "#fc6203"}
-  if (lower < currentDataPoint && currentDataPoint < higher){colorc = "#b3dee2"}
-  else{colorc = "#fc6203"}
-
-
-
+  if (lower < previousDataPoint && previousDataPoint < higher) {
+    colorp = "#b3dee2";
+  } else {
+    colorp = "#fc6203";
+  }
+  if (lower < currentDataPoint && currentDataPoint < higher) {
+    colorc = "#b3dee2";
+  } else {
+    colorc = "#fc6203";
+  }
 
   return (
     <>
@@ -316,17 +393,14 @@ const StackedBarChart = ({testData, biomarker}) => {
           marginVertical: 8,
           borderRadius: 20,
           shadowOpacity: 0.5,
-          shadowOffset: {height: 1}
+          shadowOffset: { height: 1 },
         }}
         data={{
           labels: [`${previousDataLabel}`, `${currentDataLabel}`],
           datasets: [
             {
               data: [previousDataPoint, currentDataPoint],
-              colors:[
-                (opacity = 1) => colorp,
-                (opacity = 1) => colorc,
-            ]
+              colors: [(opacity = 1) => colorp, (opacity = 1) => colorc],
             },
           ],
         }}
@@ -360,7 +434,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderRadius: 100,
     shadowOpacity: 0.5,
-    shadowOffset: {height: 1}
+    shadowOffset: { height: 1 },
   },
   heading: {
     color: "#fff",
@@ -379,7 +453,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 30,
     shadowOpacity: 0.5,
-    shadowOffset: {height: 1}
+    shadowOffset: { height: 1 },
   },
   text_content: {
     fontSize: 20,
@@ -434,6 +508,6 @@ const styles = StyleSheet.create({
   textButtons: {
     color: "#fff",
     fontWeight: "800",
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
