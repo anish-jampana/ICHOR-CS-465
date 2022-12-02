@@ -248,7 +248,7 @@ var PreviewTestModal = (data) => {
               Blood Test Preview
             </Text>
             {dataDisplay.map((value) => 
-              <Text id={value} style={styles.modalText}>{value}</Text>
+              <Text style={styles.modalText}>{value}</Text>
             )}
             <View style={{ alignItems: "center" }}>
               <Pressable

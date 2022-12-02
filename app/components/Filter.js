@@ -309,14 +309,14 @@ var Filter = (props) => {
                       }}
                     >
                       <View style={{ alignItems: "center" }}>
-                        <Text style={styles.modalHeader}>SORT</Text>
+                        <Text style={styles.modalHeader}>ABNORMALITY</Text>
                         <CheckBox
                           value={values?.sortPriority}
                           handleChange={(nextValue) =>
                             setFieldValue("sortPriority", nextValue)
                           }
                         >
-                          Sort by Abnormal Levels
+                          Filter by Abnormality
                         </CheckBox>
                       </View>
                     </View>
