@@ -34,6 +34,11 @@ const BiomarkerLineChart = (props) => {
   const biomarkerInfo = React.useContext(BiomarkerInfoContext);
   const biomarkerName = biomarkerInfo[biomarker]["name"]
   const biomarkerUnits =  biomarkerInfo[biomarker]["units"]
+  const c = loadedData.reverse()
+  const range1 = biomarkerInfo[biomarker]["range"]
+
+  const lower = range1[0];
+  const higher = range1[1];
 
   //TODO: Get units from biomarkerInfo, 
   //display healthy range at top of graph with units,
@@ -46,10 +51,15 @@ const BiomarkerLineChart = (props) => {
           labels: props.labels.reverse(),
           datasets: [
             {
-              data: loadedData.reverse(),
+              data: c,
               strokeWidth: 2,
             },
           ],
+        }}
+        getDotColor={(c) => {
+          if(lower < c && c < higher) 
+          return "#63e9f2";
+          else  return '#ff0000';// orange
         }}
         width={Dimensions.get("window").width - 16}
         height={220}
@@ -61,6 +71,8 @@ const BiomarkerLineChart = (props) => {
           decimalPlaces: 2,
           color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
         }}
+        withCustomBarColorFromData={true}
+        flatColor={true}
         style={{
           marginVertical: 8,
           borderRadius: 16,

@@ -237,6 +237,16 @@ const StackedBarChart = ({testData, biomarker}) => {
   const previousDataLabel = previousTest["date"]
   const currentDataPoint = currentTest["data"][biomarker];
   const previousDataPoint = previousTest["data"][biomarker];
+  const biomarkerInfo = React.useContext(BiomarkerInfoContext);
+  const range1 = biomarkerInfo[biomarker]["range"]
+
+  const lower = range1[0];
+  const higher = range1[1];
+
+  if (lower < previousDataPoint && previousDataPoint < higher){colorp = "#b3dee2"}
+  else{colorp = "#fc6203"}
+  if (lower < currentDataPoint && currentDataPoint < higher){colorc = "#b3dee2"}
+  else{colorc = "#fc6203"}
 
 
 
@@ -255,6 +265,10 @@ const StackedBarChart = ({testData, biomarker}) => {
           datasets: [
             {
               data: [previousDataPoint, currentDataPoint],
+              colors:[
+                (opacity = 1) => colorp,
+                (opacity = 1) => colorc,
+            ]
             },
           ],
         }}
@@ -268,6 +282,8 @@ const StackedBarChart = ({testData, biomarker}) => {
           decimalPlaces: 2,
           color: (opacity = 1) => `rgba(1, 73, 105, ${opacity})`,
         }}
+        withCustomBarColorFromData={true}
+        flatColor={true}
       />
     </>
   );
