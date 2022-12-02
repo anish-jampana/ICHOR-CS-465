@@ -41,7 +41,7 @@ export default function App() {
                 name="Main"
                 component={MainScreen}
                 options={{
-                  title: "BIOMARKERS",
+                  title: "Biomarkers",
                   headerStyle: {
                     backgroundColor: "#D3D3D3", //used to be blue
                   },
@@ -49,6 +49,7 @@ export default function App() {
                   headerTitleStyle: {
                     fontWeight: "600",
                     fontSize: 25,
+                    fontWeight: "bold"
                   },
                 }}
               />

@@ -41,7 +41,6 @@ const BiomarkerLineChart = (props) => {
 
   return (
     <>
-      <Text style={styles.header}>{biomarkerName} ({biomarkerUnits})</Text>
       <LineChart
         data={{
           labels: props.labels.reverse(),
@@ -78,6 +77,7 @@ const BiomarkerLineChart = (props) => {
 const App = ({navigation}) => {
   const biomarker = React.useContext(BiomarkerContext);
   const biomarkerInfo = React.useContext(BiomarkerInfoContext);
+  
 
   const testData = React.useContext(TestDataContext);
   let defaultNumberTests = 0
@@ -111,17 +111,31 @@ const App = ({navigation}) => {
     } 
   });
 
+  const biomarkerName = biomarkerInfo[biomarker]["name"]
+  const biomarkerUnits =  biomarkerInfo[biomarker]["units"]
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#D3D3D3" }}>
       <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
-        <View style={styles.horizontal}>
-          <TimeFilter
-            handleSubmission={(numberTests) => handleSubmission(numberTests)}
-            biomarker={biomarker}
-          />
-        </View>
+        
       </View>
       <ScrollView style={{ paddingHorizontal: 30 }}>
+      <View style={styles.card_element_header}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              padding: 10,
+            }}
+          >
+            <Text style={styles.header_content}>{biomarkerName} ({biomarkerUnits})</Text>
+            <TimeFilter
+              handleSubmission={(numberTests) => handleSubmission(numberTests)}
+              biomarker={biomarker}
+            />
+          </View>
+        </View>
         <View style={styles.container}>
           <View>
             <BiomarkerLineChart compareTests={compareTests} labels={labels} />
@@ -136,9 +150,7 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>
-              Daily Requirement:
-            </Text>
+            <Text style={styles.header_content}>Daily Requirement:</Text>
             <Text style={styles.text_content}>
               Men: {biomarkerInfo[biomarker]["requirementsMen"]} {"\n"}
               Women: {biomarkerInfo[biomarker]["requirementsWomen"]}
@@ -154,10 +166,11 @@ const App = ({navigation}) => {
               padding: 10,
             }}
           >
-            <Text style={styles.header_content}>Importance to Your Health:</Text>
+            <Text style={styles.header_content}>
+              Importance to Your Health:
+            </Text>
             <Text style={styles.text_content}>
               {biomarkerInfo[biomarker]["info"]}
-
             </Text>
           </View>
         </View>
@@ -172,7 +185,7 @@ const App = ({navigation}) => {
           >
             <Text style={styles.header_content}>Diet Suggestions:</Text>
             <Text style={styles.text_content}>
-            {biomarkerInfo[biomarker]["suggestions"]}
+              {biomarkerInfo[biomarker]["suggestions"]}
             </Text>
           </View>
         </View>
@@ -223,6 +236,13 @@ const styles = StyleSheet.create({
     marginTop: 30,
     shadowOpacity: 0.5,
     shadowOffset: {height: 1}
+  },
+  card_element_header: {
+    backgroundColor: '#4895d9',
+    borderRadius: 20,
+    shadowOpacity: 0.5,
+    shadowOffset: {height: 1},
+    marginBottom: 5
   },
   header_content: {
     fontSize: 20,
