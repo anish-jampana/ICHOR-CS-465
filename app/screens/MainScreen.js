@@ -53,15 +53,15 @@ export default function MainScreen({ navigation }) {
 
   let biomarkersCopy = biomarkers;
 
-  if (importVisited) {
-    setImportVisited(false);
-    let biomarkersCopy = biomarkers;
+  // if (importVisited) {
+  //   setImportVisited(false);
+  //   let biomarkersCopy = biomarkers;
 
-    Object.entries(biomarkersCopy).map(([key, value]) => {
-      biomarkersCopy[key]["display"] = true;
-      biomarkersCopy[key]["alert"] = false;
-    });
-  }
+  //   Object.entries(biomarkersCopy).map(([key, value]) => {
+  //     biomarkersCopy[key]["display"] = true;
+  //     biomarkersCopy[key]["alert"] = false;
+  //   });
+  // }
 
   Object.entries(biomarkersCopy).map(([key, value]) => {
     biomarkersCopy[key]["warning"] = false;
