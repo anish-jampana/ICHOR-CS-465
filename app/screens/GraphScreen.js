@@ -124,12 +124,13 @@ const App = ({navigation}) => {
           <View
             style={{
               flexDirection: "row",
-              alignItems: "flex-end",
+              alignItems: "center",
               justifyContent: "space-between",
-              padding: 10,
+              paddingVertical: 10,
+              paddingHorizontal: 10
             }}
           >
-            <Text style={styles.header_content}>{biomarkerName} ({biomarkerUnits})</Text>
+            <Text style={styles.header_content_top}>{biomarkerName} ({biomarkerUnits})</Text>
             <TimeFilter
               handleSubmission={(numberTests) => handleSubmission(numberTests)}
               biomarker={biomarker}
@@ -239,16 +240,22 @@ const styles = StyleSheet.create({
   },
   card_element_header: {
     backgroundColor: '#4895d9',
-    borderRadius: 20,
+    borderRadius: 30,
     shadowOpacity: 0.5,
     shadowOffset: {height: 1},
-    marginBottom: 5
+    marginVertical: 5
   },
   header_content: {
     fontSize: 20,
     color: 'white',
     fontWeight: '600',
     marginBottom: 4
+  },
+  header_content_top: {
+    fontSize: 20,
+    color: 'white',
+    fontWeight: '600',
+    marginLeft: 10
   },
   text_content:{
     fontSize: 16,

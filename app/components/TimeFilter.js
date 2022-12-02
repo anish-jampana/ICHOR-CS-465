@@ -128,7 +128,7 @@ const TimeFilter = (props) => {
         style={[styles.button, styles.buttonOpen]}
         onPress={() => setModalVisible(true)}
       >
-        <MaterialCommunityIcons name="filter" size={40} color="#484d52" />
+        <MaterialCommunityIcons name="filter" size={40} color="#fff" />
       </Pressable>
     </View>
   );
